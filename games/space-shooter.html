@@ -17,29 +17,30 @@
     <canvas id="canv">
 
     </canvas>
-    <script src="Vector2.js"></script>
+    <script src="../engine/Vector2.js"></script> //go up one folder and go down into engine folder to find Vector2
+    <script src="../engine/Input.js"></script>
+    <script src="../engine/Engine.js"></script>
     <script>
-        let canvas = document.querySelector("#canv")
-        let ctx = canvas.getContext("2d")
-
         let position = new Vector2(50, 50)
 
-        function gameLoop() {
-            update()
-            draw()
-            requestAnimationFrame(gameLoop)
-        }
-
         function update() {
+            console.log(Input.keysDown)
+
+            if(Input.keysDown.includes("ArrowRight")){
             position.x = position.x + 2
+            }
+            if(Input.keysDown.includes("ArrowLeft")){
+            position.x = position.x - 2
+            }
+            if(Input.keysDown.includes("ArrowUp")){
+            position.y = position.y - 2
+            }
+            if(Input.keysDown.includes("ArrowDown")){
+            position.y = position.y + 2
+            }
         }
 
-        function draw() {
-
-            //expand size of canvas
-            canvas.width = window.innerWidth
-            canvas.height = window.innerHeight
-
+        function draw(ctx) {
             //singaling to context that i will draw something
             ctx.save()
 
@@ -68,7 +69,7 @@
             ctx.restore()
         }
 
-        requestAnimationFrame(gameLoop)
+        Engine.start()
 
     </script>
 </body>
