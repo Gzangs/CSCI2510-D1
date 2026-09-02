@@ -3,12 +3,16 @@ class Engine{
 
     static ctx
 
+    static currentScene
+
     static start(){
         Engine.canvas = document.querySelector("#canv")
         Engine.ctx = Engine.canvas.getContext("2d")
 
         addEventListener("keydown", Input.keydown)
         addEventListener("keyup", Input.keyup)
+
+        Engine.currentScene.start()
 
         requestAnimationFrame(Engine.gameLoop)
     }
@@ -21,13 +25,15 @@ class Engine{
         }
 
     static update(){
-        update()
+        //update()
+        Engine.currentScene.update()
     }
 
     static draw(){
             //expand size of canvas
             Engine.canvas.width = window.innerWidth
             Engine.canvas.height = window.innerHeight
-            draw(Engine.ctx) //give context
+            //draw(Engine.ctx) //give context
+            Engine.currentScene.draw(Engine.ctx)
     }
 }
