@@ -1,8 +1,9 @@
 class Scene{
     gameObjects = []
 
-    instantiate(gameObject){
+    instantiate(gameObject, position = new Vector(0,0)){
         this.gameObjects.push(gameObject)
+        gameObject.transform.position = position
     }
 
     start(){
@@ -22,4 +23,8 @@ class Scene{
             gameObject.draw(ctx)
         }
     }
+}
+
+function instantiate(gameObject, position = new Vector2(0,0)){
+        Engine.currentScene.instantiate(gameObject, position)
 }

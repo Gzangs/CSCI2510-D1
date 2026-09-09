@@ -6,4 +6,8 @@ class Vector2 { //because two components, x and y
         this.x = x
         this.y = y
     }
+
+    clone(){
+        return new Vector2(this.x, this.y)
+    }
 }
