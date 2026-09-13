@@ -4,6 +4,9 @@ class Scene{
     instantiate(gameObject, position = new Vector(0,0)){
         this.gameObjects.push(gameObject)
         gameObject.transform.position = position
+        if (Engine.currentScene === this){ //=== checks if value and data type are the same
+            gameObject.start()
+        }
     }
 
     start(){
@@ -16,6 +19,10 @@ class Scene{
         for(const gameObject of this.gameObjects){
             gameObject.update()
         }
+        this.gameObjects = this.gameObjects.filter(function(gameObject) {
+            return !gameObject.isDestroyed
+        })
+
     }
 
     draw(ctx){

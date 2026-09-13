@@ -9,6 +9,6 @@ class Input{
 
     static keyup(event){
         let index = Input.keysDown.indexOf(event.code)
-        Input.keysDown.splice(index,1) //remove 1
+        Input.keysDown.splice(index,1) //remove key from array
     }
 }

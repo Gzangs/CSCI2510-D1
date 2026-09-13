@@ -18,7 +18,7 @@ class Polygon extends Component {
 
 
 
-        ctx.fillStyle = "this.fillStyle"
+        ctx.fillStyle = this.fillStyle
         ctx.fill()
 
         //signaling done drawing

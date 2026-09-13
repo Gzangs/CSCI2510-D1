@@ -1,5 +1,6 @@
 class GameObject{
     components = []
+    isDestroyed = false
 
     get transform(){
         return this.components[0];
@@ -25,6 +26,10 @@ class GameObject{
         for(const component of this.components){
             component.update?.()
         }
+    }
+
+    destroy(){
+        this.isDestroyed = true
     }
 
     draw(ctx){

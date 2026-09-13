@@ -30,7 +30,7 @@ class DrawComponent extends Component {
 
 
 
-        ctx.fillStyle = "black"
+        ctx.fillStyle = "magenta"
         ctx.fill()
 
         //signaling done drawing

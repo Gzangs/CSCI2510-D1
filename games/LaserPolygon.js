@@ -15,7 +15,7 @@ class LaserPolygon extends Component {
 
 
 
-        ctx.fillStyle = "green"
+        ctx.fillStyle = "magenta"
         ctx.fill()
 
         //signaling done drawing
