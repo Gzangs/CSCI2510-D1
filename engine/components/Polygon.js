@@ -10,6 +10,8 @@ class Polygon extends Component {
 
         //set center of object, trasnlate is algebra definition
         ctx.translate(position.x, position.y)
+        ctx.scale(this.transform.scale.x, this.transform.scale.y)
+        ctx.rotate(this.transform.rotation)
 
         ctx.beginPath()
         for(const point of this.points){

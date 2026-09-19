@@ -7,6 +7,18 @@ class Vector2 { //because two components, x and y
         this.y = y
     }
 
+    plus(other){
+        return new Vector2(this.x + other.x, this.y + other.y)
+    }
+
+    minus(other){
+        return new Vector2(this.x - other.x, this.y - other.y)
+    }
+
+    get magnitude(){ //pythagorean theorem, theres also a math hypotenuse function
+        return Math.sqrt(this.x*this.x + this.y*this.y)
+    }
+
     clone(){
         return new Vector2(this.x, this.y)
     }

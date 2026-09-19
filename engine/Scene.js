@@ -1,12 +1,10 @@
 class Scene{
     gameObjects = []
 
-    instantiate(gameObject, position = new Vector(0,0)){
+    instantiate(gameObject, position = new Vector2(0,0), rotation = 0){
         this.gameObjects.push(gameObject)
         gameObject.transform.position = position
-        if (Engine.currentScene === this){ //=== checks if value and data type are the same
-            gameObject.start()
-        }
+        gameObject.transform.rotation = rotation
     }
 
     start(){
@@ -19,9 +17,13 @@ class Scene{
         for(const gameObject of this.gameObjects){
             gameObject.update()
         }
-        this.gameObjects = this.gameObjects.filter(function(gameObject) {
-            return !gameObject.isDestroyed
-        })
+        let temp = []
+        for(const gameObject of this.gameObjects){
+            if(!gameObject.markForDestroy){
+                temp.push(gameObject)
+            }
+        }
+        this.gameObjects = temp
 
     }
 
@@ -32,6 +34,6 @@ class Scene{
     }
 }
 
-function instantiate(gameObject, position = new Vector2(0,0)){
-        Engine.currentScene.instantiate(gameObject, position)
+function instantiate(gameObject, position = new Vector2(0,0), rotation = 0){
+        Engine.currentScene.instantiate(gameObject, position, rotation)
 }

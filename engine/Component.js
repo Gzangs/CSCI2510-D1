@@ -5,7 +5,4 @@ class Component{
         return this.gameObject.transform
     }
 
-    destroy(){
-        this.gameObject.destroy()
-    }
 }
