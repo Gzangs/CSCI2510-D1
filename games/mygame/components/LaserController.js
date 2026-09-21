@@ -24,8 +24,9 @@ class LaserController extends Component{
             let enemyPosition = enemyGameObject.transform.position
             let distance = myPosition.minus(enemyPosition).magnitude
             if(distance < 12){
+                instantiate(new ItemGameObject(), this.transform.position.clone()) //make this random chance maybe
                 this.gameObject.destroy()
-                enemyGameObject.destroy()
+                enemyGameObject.destroy()   
             }
         }
     }
