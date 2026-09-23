@@ -11,4 +11,5 @@ class Assets{
             new Vector2(20, -50),
             new Vector2(20, 20)
         ]
+        
 }

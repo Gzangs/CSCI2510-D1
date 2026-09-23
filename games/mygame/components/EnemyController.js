@@ -8,5 +8,10 @@ class EnemyController extends Component{
         if(this.transform.position.x < 500){
             this.direction = 1
         }
+        if(this.gameObject.getComponent(Health).health <= 0){
+            instantiate(new ItemGameObject(), this.transform.position.clone()) //make this random chance maybe
+            this.gameObject.destroy()
+            Globals.points += 100 //100 points when defeat enemy
+        }
     }
 }

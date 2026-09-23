@@ -11,22 +11,24 @@ class LaserController extends Component{
             //console.log("laser destroyed")
         }
         
-        if(this.transform.position.y < 50){
+        if(this.transform.position.y < -50){
             this.gameObject.destroy() //destroy if reach top
         }
 
 
         //collision check
         let myPosition = this.transform.position
-        let enemyGameObject = GameObject.find("Enemy")
+        let enemyGameObjects = GameObject.findGameObjectsWithTag("Enemy")
 
-        if(enemyGameObject){
+        for(const enemyGameObject of enemyGameObjects){
             let enemyPosition = enemyGameObject.transform.position
             let distance = myPosition.minus(enemyPosition).magnitude
             if(distance < 12){
-                instantiate(new ItemGameObject(), this.transform.position.clone()) //make this random chance maybe
                 this.gameObject.destroy()
-                enemyGameObject.destroy()   
+                //enemyGameObject.destroy()
+                let healthComponent = enemyGameObject.getComponent(Health)
+                healthComponent.health -= 1 //minus 1 health
+                Globals.points += 10 //10 points when hit enemy
             }
         }
     }

@@ -1,6 +1,6 @@
 class UpdateComponent extends Component {
 
-    speed = 50
+    speed = 100
     start(){
         this.timeSinceLastLaser = 0
     }

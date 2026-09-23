@@ -26,4 +26,11 @@ class Assets{
             new Vector2(20, 20)
             // add text that says power
         ]
+
+    static circle = [
+            new Vector2(-20, 20),
+            new Vector2(-20, -20),
+            new Vector2(20, -20),
+            new Vector2(20, 20)
+        ]
 }

@@ -1,10 +1,8 @@
-class MainScene extends Scene{ //inherit everything from Scene
+class GenericLevel extends Scene{ //this has things that every level has
     constructor(){
-        super() //find in superclass aka parent
+        super() //dont name scenes
         this.instantiate(new MainGameObject(), new Vector2(window.innerWidth / 3, window.innerHeight / 1.125))
-        this.instantiate(new EnemyGameObject(), new Vector2(25, 150), Math.PI)
-        this.instantiate(new EnemyGameObject(), new Vector2(200, 200), Math.PI)
-        //this.addComponent(new Polygon(), new Vector2(window.innerWidth / 3, window.innerHeight / 1.125) {fillStyle: "black", points:Assets.square})
+        this.instantiate(new PointsGameObject(), new Vector2(0, 20))
 
         let panel = new GameObject("Panel")
         panel.addComponent(new Polygon(), {fillStyle: "thistle", points: Assets.square})

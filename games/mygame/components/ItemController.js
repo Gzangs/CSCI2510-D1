@@ -40,6 +40,7 @@ class ItemController extends Component{
             let distance = myPosition.minus(mainPosition).magnitude
             if(distance < 30){
                 this.gameObject.destroy()
+                Globals.points += 50 //50 points when get item
             }
         }
     }

@@ -35,5 +35,5 @@ class Scene{
 }
 
 function instantiate(gameObject, position = new Vector2(0,0), rotation = 0){
-        Engine.currentScene.instantiate(gameObject, position, rotation)
+        SceneManager.currentScene.instantiate(gameObject, position, rotation)
 }
