@@ -6,7 +6,7 @@ class LaserController extends Component{
 
         this.laserTimer += 1
         //console.log("laser updated")
-        if (this.laserTimer > 100){
+        if (this.laserTimer > (100 + Globals.power)){ //power increases range
             this.gameObject.destroy() //destroy if out too long
             //console.log("laser destroyed")
         }

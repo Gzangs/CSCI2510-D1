@@ -24,13 +24,40 @@ class Assets{
             new Vector2(-20, -20),
             new Vector2(20, -20),
             new Vector2(20, 20)
-            // add text that says power
         ]
 
     static circle = [
-            new Vector2(-20, 20),
-            new Vector2(-20, -20),
-            new Vector2(20, -20),
-            new Vector2(20, 20)
+            new Vector2(0, -20),
+            new Vector2(4, -20),
+            new Vector2(8, -18),
+            new Vector2(11, -17),
+            new Vector2(14, -14),
+            new Vector2(17, -11),
+            new Vector2(18, -8),
+            new Vector2(20, -4),
+            new Vector2(20, 0),
+            new Vector2(20, 4),
+            new Vector2(18, 8),
+            new Vector2(17, 11),
+            new Vector2(14, 14),
+            new Vector2(11, 17),
+            new Vector2(8, 18),
+            new Vector2(4, 20),
+            new Vector2(0, 20),
+            new Vector2(-4, 20),
+            new Vector2(-8, 18),
+            new Vector2(-11, 17),
+            new Vector2(-14, 14),
+            new Vector2(-17, 11),
+            new Vector2(-18, 8),
+            new Vector2(-20, 4),
+            new Vector2(-20, 0),
+            new Vector2(-20, -4),
+            new Vector2(-18, -8),
+            new Vector2(-17, -11),
+            new Vector2(-14, -14),
+            new Vector2(-11, -17),
+            new Vector2(-8, -18),
+            new Vector2(-4, -20)
         ]
 }

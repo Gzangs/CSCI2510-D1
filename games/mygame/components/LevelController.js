@@ -5,11 +5,11 @@ class LevelController extends Component{
         SceneManager.loadScene(GenericLevel, true) //the true means its additive
     }
     update(){
-        let enemyGameObject = LaserGameObject.find("Enemy")
-        if(!enemyGameObject){
-            //if no enemy, wait and change scene to next level
+        let enemyGameObjects = GameObject.findGameObjectsWithTag("Enemy")
+        if(enemyGameObjects.length == 0){
+            //if no enemies, wait and change scene to next level
             this.levelWaitTime += Time.deltaTime
-            if(this.levelWaitTime > 10){
+            if(this.levelWaitTime > 10 && Globals.lives > 0){
                 SceneManager.loadScene(Level02)
             }
         }

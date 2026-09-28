@@ -41,6 +41,7 @@ class ItemController extends Component{
             if(distance < 30){
                 this.gameObject.destroy()
                 Globals.points += 50 //50 points when get item
+                Globals.power += 1 //increase power by 1 when get item
             }
         }
     }
