@@ -1,6 +1,10 @@
 <html>
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
+
     <title>
         ThreeRake
     </title>
@@ -30,6 +34,7 @@
     <script src="../../engine/components/Transform.js"></script>
     <script src="../../engine/components/Polygon.js"></script>
     <script src="../../engine/components/TextLabel.js"></script>
+    <script src="../../engine/components/Camera.js"></script>
 
     <script src="./components/UpdateComponent.js"></script>
     <script src="./components/LaserController.js"></script>
@@ -37,41 +42,45 @@
     <script src="./components/Health.js"></script>
     <script src="./components/ItemController.js"></script>
     <script src="./components/LevelController.js"></script>
-    <script src="./components/PointsController.js"></script>
     <script src="./components/BulletController.js"></script>
     <script src="./components/EightShotEnemyController.js"></script>
-    <script src="./components/HighScoreController.js"></script>
-    <script src="./components/PowerDisplayController.js"></script>
-    <script src="./components/BombDisplayController.js"></script>
-    <script src="./components/LivesDisplayController.js"></script>
+
+    <script src="./components/Display/PointsController.js"></script>
+    <script src="./components/Display/HighScoreController.js"></script>
+    <script src="./components/Display/PowerDisplayController.js"></script>
+    <script src="./components/Display/BombDisplayController.js"></script>
+    <script src="./components/Display/LivesDisplayController.js"></script>
+    <script src="./components/Display/UIPanelController.js"></script>
+
+
 
     <script src="./gameObjects/MainGameObject.js"></script>
     <script src="./gameObjects/LaserGameObject.js"></script>
     <script src="./gameObjects/EnemyGameObject.js"></script>
     <script src="./gameObjects/ItemGameObject.js"></script>
-    <script src="./gameObjects/PointsGameObject.js"></script>
     <script src="./gameObjects/LevelControllerGameObject.js"></script>
     <script src="./gameObjects/BulletGameObject.js"></script>
     <script src="./gameObjects/EightShotEnemyGameObject.js"></script>
-    <script src="./gameObjects/HighScoreGameObject.js"></script>
-    <script src="./gameObjects/PowerDisplayGameObject.js"></script>
-    <script src="./gameObjects/BombDisplayGameObject.js"></script>
-    <script src="./gameObjects/LivesDisplayGameObject.js"></script>
+
+    <script src="./gameObjects/Display/PointsGameObject.js"></script>
+    <script src="./gameObjects/Display/HighScoreGameObject.js"></script>
+    <script src="./gameObjects/Display/PowerDisplayGameObject.js"></script>
+    <script src="./gameObjects/Display/BombDisplayGameObject.js"></script>
+    <script src="./gameObjects/Display/LivesDisplayGameObject.js"></script>
+    <script src="./gameObjects/Display/UIPanelGameObject.js"></script>
 
     <script src="./scenes/GenericLevel.js"></script>
     <script src="./scenes/Level01.js"></script>
     <script src="./scenes/Level02.js"></script>
-    <script src="./scenes/Level03.js"></script>
-    <script src="./scenes/Level04.js"></script>
-    <script src="./scenes/Level05.js"></script>
 
     <script src="./Assets.js"></script>
     <script src="./Globals.js"></script>
+    <script src="./Settings.js"></script>
     
 
 
     <script>
-        Engine.start(Level01)
+        Engine.start(Level01, Settings)
 
     </script>
 </body>

@@ -1,10 +1,5 @@
 class BulletController extends Component{
     bulletTimer = 0
-    
-
-    start(){
-        this.timeSinceLastBullet = 0  
-    }
 
     update(){
         const speed = Time.deltaTime * 200

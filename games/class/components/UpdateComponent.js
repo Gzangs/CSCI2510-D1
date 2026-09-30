@@ -26,9 +26,12 @@ class UpdateComponent extends Component {
 
         if (this.timeSinceLastLaser > 5){// lower number is higher fire rate
             this.timeSinceLastLaser = 0
-            instantiate(new LaserGameObject(), this.transform.position.clone())
+            let laserGameObject = instantiate(new LaserGameObject(), this.transform.position.clone()) //get the laser just created
+            if(Math.random() < 0.5) //50/50 to be green instead of default color
+            laserGameObject.getComponent(Polygon).fillStyle = "green"
         }
 
-
+        Camera.main.transform.position = this.transform.position.clone()
+        
     }
 }

@@ -1,6 +1,6 @@
 class EightShotEnemyGameObject extends GameObject{
     constructor(){
-        super("EightShotEnemy", ["Enemy"])
+        super("EightShotEnemy", ["Enemy"], "ships")
         this.addComponent(new Polygon(), {fillStyle: "green", points:Assets.triangle})
         this.transform.scale = new Vector2(2, 2)
         this.addComponent(new EightShotEnemyController())

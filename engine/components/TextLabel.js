@@ -1,6 +1,7 @@
 class TextLabel extends Component{
     fillStyle = "black" //still error color
     text = "[BLANK]" //error text
+    font = "10px Comic Relief" //fonts.google.com for fonts you can use
 
     draw(ctx) {
         let position = this.transform.position
@@ -14,6 +15,8 @@ class TextLabel extends Component{
         ctx.rotate(this.transform.rotation)
 
         ctx.fillStyle = this.fillStyle
+
+        ctx.font = this.font
 
         ctx.fillText(this.text, 0, 0)
 

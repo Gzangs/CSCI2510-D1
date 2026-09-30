@@ -17,11 +17,11 @@ class ItemController extends Component{
         this.initializeArc()
 
         const upwardSpeed = 70 //jump up amount
-        const gravity = 35 //floatiness
+        const gravity = 17.5 //floatiness
 
         this.arcTime += Time.deltaTime
         //do stuff with x position here for mario star arc
-        this.transform.position.y = (this.arcOrigin.y - (upwardSpeed * this.arcTime)) + ((0.5 * gravity) * (this.arcTime ** 2))
+        this.transform.position.y = (this.arcOrigin.y - (upwardSpeed * this.arcTime)) + (gravity * (this.arcTime ** 2))
 
 
 

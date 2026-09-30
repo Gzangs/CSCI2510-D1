@@ -11,9 +11,9 @@ class LaserController extends Component{
             //console.log("laser destroyed")
         }
         
-        if(this.transform.position.y < -50){
+        /*if(this.transform.position.y < -50){
             this.gameObject.destroy() //destroy if reach top
-        }
+        }*/
 
 
         //collision check

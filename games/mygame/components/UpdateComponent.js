@@ -25,13 +25,17 @@ class UpdateComponent extends Component {
             this.transform.position.y = this.transform.position.y + Time.deltaTime * this.speed
         }
 
-        this.transform.position.x = Math.max(20, Math.min(window.innerWidth / 1.5, this.transform.position.x))
-        this.transform.position.y = Math.max(50, Math.min(window.innerHeight - 20, this.transform.position.y)) //keep player in bounds
+        this.transform.position.x = Math.max(20, Math.min(Engine.canvas.width / 1.5, this.transform.position.x))
+        this.transform.position.y = Math.max(50, Math.min(Engine.canvas.height - 20, this.transform.position.y)) //keep player in bounds
 
         if (this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.01)){ //more power lowers fire rate, 0.01 is too high for full game
             this.timeSinceLastLaser = 0
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(0, 50))) //minus will offset laser to front of ship
         }
+
+        //Camera.main.transform.position = this.transform.position.clone() //follow player
+        //Camera.main.transform.position.y -= 25 * Time.deltaTime //move up
+
 
         //collision check
         let myPosition = this.transform.position
