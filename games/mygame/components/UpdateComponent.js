@@ -25,16 +25,26 @@ class UpdateComponent extends Component {
             this.transform.position.y = this.transform.position.y + Time.deltaTime * this.speed
         }
 
-        this.transform.position.x = Math.max(20, Math.min(Engine.canvas.width / 1.5, this.transform.position.x))
-        this.transform.position.y = Math.max(50, Math.min(Engine.canvas.height - 20, this.transform.position.y)) //keep player in bounds
+        //Camera.main.transform.position = this.transform.position.clone() //follow player
+        //Camera.main.transform.position.y -= 25 * Time.deltaTime //move up
+
+        this.transform.position.x = Math.max(20, Math.min(Engine.canvas.width / 1.5, this.transform.position.x)) //keep player in bounds
+        //this.transform.position.y = Math.max(50, Math.min(Engine.canvas.height - 20, this.transform.position.y)) 
+
+        let cameraScroll = 35 * Time.deltaTime //35 is scroll speed
+        Camera.main.transform.position.y -= cameraScroll
+        this.transform.position.y -= cameraScroll //offset camera scroll for player
+
+        let cameraPosition = Camera.main.transform.position
+        let topEdge = cameraPosition.y - Engine.canvas.height / 2
+        let bottomEdge = cameraPosition.y + Engine.canvas.height / 2
+        this.transform.position.y = Math.max(topEdge + 50, Math.min(bottomEdge - 20, this.transform.position.y)) //keep player in bounds
+
 
         if (this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.01)){ //more power lowers fire rate, 0.01 is too high for full game
             this.timeSinceLastLaser = 0
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(0, 50))) //minus will offset laser to front of ship
         }
-
-        //Camera.main.transform.position = this.transform.position.clone() //follow player
-        //Camera.main.transform.position.y -= 25 * Time.deltaTime //move up
 
 
         //collision check
@@ -46,7 +56,10 @@ class UpdateComponent extends Component {
             let distance = myPosition.minus(bulletPosition).magnitude
             if(distance < 30){
                 this.gameObject.destroy()
-                Globals.lives -= 1 //lose a life
+                let gameObjects = GameObject.findGameObjectsByType(Transform)
+                for(const gameObject of gameObjects){
+                    gameObject.broadcastMessage("playerDied")
+                }
             }
         } 
     }

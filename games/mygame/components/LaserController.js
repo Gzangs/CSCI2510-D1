@@ -28,7 +28,11 @@ class LaserController extends Component{
                 //enemyGameObject.destroy()
                 let healthComponent = enemyGameObject.getComponent(Health)
                 healthComponent.health -= 1 //minus 1 health
-                Globals.points += 10 //10 points when hit enemy
+
+                let gameObjects = GameObject.findGameObjectsByType(Transform)
+                for(const gameObject of gameObjects){
+                    gameObject.broadcastMessage("updatePoints", [10]) //10 points when hit enemy
+                }
             }
         }
     }

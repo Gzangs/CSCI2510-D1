@@ -19,13 +19,6 @@ class Assets{
             new Vector2(20, 20)
         ]
 
-    static power = [
-            new Vector2(-20, 20),
-            new Vector2(-20, -20),
-            new Vector2(20, -20),
-            new Vector2(20, 20)
-        ]
-
     static circle = [
             new Vector2(0, -20),
             new Vector2(4, -20),

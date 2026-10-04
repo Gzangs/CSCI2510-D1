@@ -16,8 +16,8 @@ class ItemController extends Component{
     update(){
         this.initializeArc()
 
-        const upwardSpeed = 70 //jump up amount
-        const gravity = 17.5 //floatiness
+        const upwardSpeed = 150 //jump up amount
+        const gravity = 25 //floatiness
 
         this.arcTime += Time.deltaTime
         //do stuff with x position here for mario star arc
@@ -40,8 +40,13 @@ class ItemController extends Component{
             let distance = myPosition.minus(mainPosition).magnitude
             if(distance < 30){
                 this.gameObject.destroy()
-                Globals.points += 50 //50 points when get item
-                Globals.power += 1 //increase power by 1 when get item
+                let gameObjects = GameObject.findGameObjectsByType(Transform)
+                for(const gameObject of gameObjects){
+                    gameObject.broadcastMessage("updatePoints", [50]) //50 points when get item
+                }
+                for(const gameObject of gameObjects){
+                    gameObject.broadcastMessage("updatePower", [1]) //1 power when get item
+                }
             }
         }
     }

@@ -20,7 +20,10 @@ class EightShotEnemyController extends Component{
         if(this.gameObject.getComponent(Health).health <= 0){
             instantiate(new ItemGameObject(), this.transform.position.clone())
             this.gameObject.destroy()
-            Globals.points += 250 //250 points when defeat enemy
+            let gameObjects = GameObject.findGameObjectsByType(Transform)
+                for(const gameObject of gameObjects){
+                    gameObject.broadcastMessage("updatePoints", [250]) //250 points when defeat enemy
+                }
         }
 
         if (this.timeSinceLastBullet > this.fireInterval){
@@ -29,6 +32,12 @@ class EightShotEnemyController extends Component{
             for (const rotation of rotations){
                 instantiate(new BulletGameObject(), this.transform.position.clone(), rotation)
             }
+        }
+
+        let cameraPosition = Camera.main.transform.position
+        let bottomEdge = cameraPosition.y + Engine.canvas.height / 2
+        if(this.transform.position.y > bottomEdge + 10){
+            this.gameObject.destroy() //destroy when 10 pixels off the bottom of the screen
         }
     }
 }
