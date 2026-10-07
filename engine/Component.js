@@ -1,4 +1,5 @@
 class Component{
+    /** @type(GameObject) */ //gives red squigilly lines
     gameObject
 
     didStart = false

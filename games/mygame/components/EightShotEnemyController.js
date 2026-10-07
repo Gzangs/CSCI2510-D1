@@ -40,4 +40,8 @@ class EightShotEnemyController extends Component{
             this.gameObject.destroy() //destroy when 10 pixels off the bottom of the screen
         }
     }
+
+    bombUsed(){
+        this.gameObject.getComponent(Health).health -= 100 //make this only on screen
+    }
 }

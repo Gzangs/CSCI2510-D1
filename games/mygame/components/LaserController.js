@@ -2,11 +2,11 @@ class LaserController extends Component{
     laserTimer = 0
 
     update(){
-        this.transform.position.y -= Time.deltaTime * 200 //bullet speed
+        this.transform.position.y -= Time.deltaTime * 300 //bullet speed
 
         this.laserTimer += 1
         //console.log("laser updated")
-        if (this.laserTimer > (100 + Globals.power)){ //power increases range
+        if (this.laserTimer > (90 + Globals.power)){ //power increases range
             this.gameObject.destroy() //destroy if out too long
             //console.log("laser destroyed")
         }

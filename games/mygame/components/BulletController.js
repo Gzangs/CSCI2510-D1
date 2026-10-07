@@ -29,4 +29,8 @@ class BulletController extends Component{
             this.gameObject.destroy() //destroy when 10 pixels off the bottom of the screen
         }
     }
+
+    bombUsed(){
+        this.gameObject.destroy()
+    }
 }

@@ -2,9 +2,11 @@ class UpdateComponent extends Component {
     timeSinceLastLaser = 0
     fireInterval = (10 / 60) // left number being lower is higher fire rate
     speed = 300
+    bombCooldown = 0
 
     start(){
-        this.timeSinceLastLaser = 0  
+        this.timeSinceLastLaser = 0 
+        this.bombCooldown = 0
     }
 
     update() {
@@ -24,6 +26,16 @@ class UpdateComponent extends Component {
         if (Input.keysDown.includes("ArrowDown")||Input.keysDown.includes("KeyS")) {
             this.transform.position.y = this.transform.position.y + Time.deltaTime * this.speed
         }
+
+        if ((Input.keysDown.includes("KeyP")||Input.keysDown.includes("KeyZ")) && Globals.bombs > 0 && this.bombCooldown <= 0){
+            let gameObjects = GameObject.findGameObjectsByType(Transform)
+            for(const gameObject of gameObjects){
+                    gameObject.broadcastMessage("bombUsed")
+                }
+            this.bombCooldown = 1 //can only use one bomb a second
+        }
+
+        this.bombCooldown -= Time.deltaTime
 
         //Camera.main.transform.position = this.transform.position.clone() //follow player
         //Camera.main.transform.position.y -= 25 * Time.deltaTime //move up
