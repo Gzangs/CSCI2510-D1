@@ -18,11 +18,24 @@ class EightShotEnemyController extends Component{
         }
 
         if(this.gameObject.getComponent(Health).health <= 0){
-            instantiate(new ItemGameObject(), this.transform.position.clone())
+            /*let itemGameObject = instantiate(new SuperItemGameObject(), this.transform.position.clone())
+            let itemFillGameObject = instantiate(new SuperItemFillGameObject())
+            let itemLetterGameObject = instantiate(new SuperItemLetterGameObject(), new Vector2(-13, 14))
+            itemFillGameObject.transform.setParent(itemGameObject.transform)
+            itemLetterGameObject.transform.setParent(itemGameObject.transform)*/
+
+            /*let itemGameObject = instantiate(new BombItemGameObject(), this.transform.position.clone())
+            let itemLetterGameObject = instantiate(new BombItemLetterGameObject(), new Vector2(-13, 14))
+            itemLetterGameObject.transform.setParent(itemGameObject.transform)*/
+
+            let itemGameObject = instantiate(new LifeItemGameObject(), this.transform.position.clone())
+            let itemLetterGameObject = instantiate(new LifeItemLetterGameObject(), new Vector2(-13, 14))
+            itemLetterGameObject.transform.setParent(itemGameObject.transform)
+
             this.gameObject.destroy()
             let gameObjects = GameObject.findGameObjectsByType(Transform)
                 for(const gameObject of gameObjects){
-                    gameObject.broadcastMessage("updatePoints", [250]) //250 points when defeat enemy
+                    gameObject.broadcastMessage("updatePoints", [100]) //100 points when defeat enemy
                 }
         }
 
@@ -42,6 +55,15 @@ class EightShotEnemyController extends Component{
     }
 
     bombUsed(){
-        this.gameObject.getComponent(Health).health -= 100 //make this only on screen
+        let cameraPosition = Camera.main.transform.position
+        let leftEdge = cameraPosition.x - Engine.canvas.width / 2
+        let rightEdge = cameraPosition.x + Engine.canvas.width / 2
+        let topEdge = cameraPosition.y - Engine.canvas.height / 2
+        let bottomEdge = cameraPosition.y + Engine.canvas.height / 2
+
+        if(this.transform.position.x >= leftEdge && this.transform.position.x <= rightEdge &&
+        this.transform.position.y >= topEdge && this.transform.position.y <= bottomEdge){ //if on screen
+            this.gameObject.getComponent(Health).health -= 100
+        }
     }
 }

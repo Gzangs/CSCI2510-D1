@@ -1,4 +1,4 @@
-class ItemController extends Component{
+class SuperItemController extends Component{
 
     arcOrigin = new Vector2(0,0)
     arcTime = 0
@@ -13,6 +13,15 @@ class ItemController extends Component{
         this.arcInitialized = true
     }
 
+    destroyItem(){
+        this.gameObject.destroy()
+        for(const child of GameObject.findGameObjectsByType(Transform)){
+            if(child.transform.parent === this.transform){
+                child.destroy()
+            }
+        }
+    }
+
     update(){
         this.initializeArc()
 
@@ -25,8 +34,8 @@ class ItemController extends Component{
 
 
 
-        if(this.transform.position.y > window.innerHeight + 100){
-            this.gameObject.destroy() //destroy when 100 pixels off the bottom of the screen
+        if(this.transform.position.y > window.innerHeight - 100){
+            this.destroyItem() //destroy when 100 pixels off the bottom of the screen
         }
 
 
@@ -39,13 +48,13 @@ class ItemController extends Component{
             let mainPosition = MainGameObject.transform.position
             let distance = myPosition.minus(mainPosition).magnitude
             if(distance < 30){
-                this.gameObject.destroy()
+                this.destroyItem()
                 let gameObjects = GameObject.findGameObjectsByType(Transform)
                 for(const gameObject of gameObjects){
-                    gameObject.broadcastMessage("updatePoints", [50]) //50 points when get item
+                    gameObject.broadcastMessage("updatePoints", [250]) //250 points when get item
                 }
                 for(const gameObject of gameObjects){
-                    gameObject.broadcastMessage("updatePower", [1]) //1 power when get item
+                    gameObject.broadcastMessage("updatePower", [5]) //5 power when get item
                 }
             }
         }

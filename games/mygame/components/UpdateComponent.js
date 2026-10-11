@@ -1,8 +1,9 @@
 class UpdateComponent extends Component {
     timeSinceLastLaser = 0
-    fireInterval = (10 / 60) // left number being lower is higher fire rate
+    fireInterval = (12 / 60) // left number being lower is higher fire rate
     speed = 300
     bombCooldown = 0
+    iframes = 5
 
     start(){
         this.timeSinceLastLaser = 0 
@@ -13,6 +14,13 @@ class UpdateComponent extends Component {
         this.timeSinceLastLaser += Time.deltaTime
 
         console.log(Input.keysDown)
+
+        if (Input.keysDown.includes("ShiftLeft")||Input.keysDown.includes("KeyO")) {
+            this.speed = 125
+        }
+        else{
+            this.speed = 300
+        }
 
         if (Input.keysDown.includes("ArrowRight")||Input.keysDown.includes("KeyD")) {
             this.transform.position.x = this.transform.position.x + Time.deltaTime * this.speed //movement speed
@@ -36,6 +44,7 @@ class UpdateComponent extends Component {
         }
 
         this.bombCooldown -= Time.deltaTime
+        this.iframes -= Time.deltaTime
 
         //Camera.main.transform.position = this.transform.position.clone() //follow player
         //Camera.main.transform.position.y -= 25 * Time.deltaTime //move up
@@ -53,11 +62,21 @@ class UpdateComponent extends Component {
         this.transform.position.y = Math.max(topEdge + 50, Math.min(bottomEdge - 20, this.transform.position.y)) //keep player in bounds
 
 
-        if (this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.01)){ //more power lowers fire rate, 0.01 is too high for full game
+        if ((this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.002) && Globals.power < 33)){ //more power increases fire rate
             this.timeSinceLastLaser = 0
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(0, 50))) //minus will offset laser to front of ship
         }
-
+        else if ((this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.0015) && Globals.power < 67)){ //double shot
+            this.timeSinceLastLaser = 0
+            instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(-6, 50)))
+            instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(6, 50)))
+        }
+        else if ((this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.0013) && Globals.power <= 100)){ //triple shot
+            this.timeSinceLastLaser = 0
+            instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(-12, 50)))
+            instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(0, 50)))
+            instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(12, 50)))
+        }
 
         //collision check
         let myPosition = this.transform.position
@@ -66,7 +85,7 @@ class UpdateComponent extends Component {
         for (const bulletGameObject of bulletGameObjects) {
             let bulletPosition = bulletGameObject.transform.position
             let distance = myPosition.minus(bulletPosition).magnitude
-            if(distance < 30){
+            if(distance < 30 && this.iframes <= 0){
                 this.gameObject.destroy()
                 let gameObjects = GameObject.findGameObjectsByType(Transform)
                 for(const gameObject of gameObjects){
@@ -74,5 +93,11 @@ class UpdateComponent extends Component {
                 }
             }
         } 
+    }
+
+    playerDied(){
+        if(Globals.lives >= 1){ //0 is not a life
+            instantiate(new MainGameObject(), new Vector2(Engine.canvas.width / 3, Engine.canvas.height / 1.125)) //respawn
+        }
     }
 }
