@@ -1,4 +1,4 @@
-class EnemyController extends Component{
+class ShotgunEnemyController extends Component{
     direction = 1
     fireInterval = (120 / 60)
 
@@ -9,17 +9,19 @@ class EnemyController extends Component{
     update(){
         this.timeSinceLastBullet += Time.deltaTime
 
-        this.transform.position.x += Time.deltaTime * 100 * this.direction
-        if(this.transform.position.x > 750){
+        /*this.transform.position.x += Time.deltaTime * 100 * this.direction
+        if(this.transform.position.x > 1200){
             this.direction = -1
         }
         if(this.transform.position.x < 500){
             this.direction = 1
-        }
+        }*/
 
         if(this.gameObject.getComponent(Health).health <= 0){
-            let itemGameObject = instantiate(new ItemGameObject(), this.transform.position.clone())
-            let itemLetterGameObject = instantiate(new ItemLetterGameObject(), new Vector2(-13, 14))
+            let itemGameObject = instantiate(new SuperItemGameObject(), this.transform.position.clone())
+            let itemFillGameObject = instantiate(new SuperItemFillGameObject())
+            let itemLetterGameObject = instantiate(new SuperItemLetterGameObject(), new Vector2(-13, 14))
+            itemFillGameObject.transform.setParent(itemGameObject.transform)
             itemLetterGameObject.transform.setParent(itemGameObject.transform)
 
             this.gameObject.destroy()
@@ -31,7 +33,10 @@ class EnemyController extends Component{
 
         if (this.timeSinceLastBullet > this.fireInterval){
             this.timeSinceLastBullet = 0
-            instantiate(new BulletGameObject(), this.transform.position.clone().minus(new Vector2(0, -20))) //minus will offset bullet to front of ship
+            const rotations = [0, 11*Math.PI/6, Math.PI/6] //shoot 3 ways downward
+            for (const rotation of rotations){
+                instantiate(new BulletGameObject(), this.transform.position.clone(), rotation)
+            }
         }
 
         let cameraPosition = Camera.main.transform.position

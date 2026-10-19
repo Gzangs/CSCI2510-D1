@@ -40,7 +40,7 @@ class UpdateComponent extends Component {
             let laserGameObject = instantiate(new LaserGameObject(), this.transform.position.clone())
         }*/
 
-        //Camera.main.transform.position = this.transform.position.clone()
+        Camera.main.transform.position = this.transform.position.clone()
         
     }
 }

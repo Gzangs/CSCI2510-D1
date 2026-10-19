@@ -1,4 +1,4 @@
-class EightShotEnemyController extends Component{
+class EnemyController extends Component{
     direction = 1
     fireInterval = (120 / 60)
 
@@ -9,42 +9,29 @@ class EightShotEnemyController extends Component{
     update(){
         this.timeSinceLastBullet += Time.deltaTime
 
-        this.transform.position.x += Time.deltaTime * 100 * this.direction
-        if(this.transform.position.x > 800){
+        /*this.transform.position.x += Time.deltaTime * 100 * this.direction
+        if(this.transform.position.x > 750){
             this.direction = -1
         }
-        if(this.transform.position.x < 300){
+        if(this.transform.position.x < 500){
             this.direction = 1
-        }
+        }*/
 
         if(this.gameObject.getComponent(Health).health <= 0){
-            /*let itemGameObject = instantiate(new SuperItemGameObject(), this.transform.position.clone())
-            let itemFillGameObject = instantiate(new SuperItemFillGameObject())
-            let itemLetterGameObject = instantiate(new SuperItemLetterGameObject(), new Vector2(-13, 14))
-            itemFillGameObject.transform.setParent(itemGameObject.transform)
-            itemLetterGameObject.transform.setParent(itemGameObject.transform)*/
-
-            /*let itemGameObject = instantiate(new BombItemGameObject(), this.transform.position.clone())
-            let itemLetterGameObject = instantiate(new BombItemLetterGameObject(), new Vector2(-13, 14))
-            itemLetterGameObject.transform.setParent(itemGameObject.transform)*/
-
-            let itemGameObject = instantiate(new LifeItemGameObject(), this.transform.position.clone())
-            let itemLetterGameObject = instantiate(new LifeItemLetterGameObject(), new Vector2(-13, 14))
+            let itemGameObject = instantiate(new ItemGameObject(), this.transform.position.clone())
+            let itemLetterGameObject = instantiate(new ItemLetterGameObject(), new Vector2(-13, 14))
             itemLetterGameObject.transform.setParent(itemGameObject.transform)
 
             this.gameObject.destroy()
             let gameObjects = GameObject.findGameObjectsByType(Transform)
                 for(const gameObject of gameObjects){
-                    gameObject.broadcastMessage("updatePoints", [100]) //100 points when defeat enemy
+                    gameObject.broadcastMessage("updatePoints", [50]) //50 points when defeat enemy
                 }
         }
 
         if (this.timeSinceLastBullet > this.fireInterval){
             this.timeSinceLastBullet = 0
-            const rotations = [Math.PI/2, Math.PI/4, 0, (7*Math.PI)/4, (3*Math.PI)/2, (5*Math.PI)/4, Math.PI, (3*Math.PI)/4] //shoot 8 ways in a circle, radians chart moment
-            for (const rotation of rotations){
-                instantiate(new BulletGameObject(), this.transform.position.clone(), rotation)
-            }
+            instantiate(new BulletGameObject(), this.transform.position.clone().minus(new Vector2(0, -20))) //minus will offset bullet to front of ship
         }
 
         let cameraPosition = Camera.main.transform.position

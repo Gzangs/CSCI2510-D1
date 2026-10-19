@@ -22,4 +22,12 @@ class Vector2 { //because two components, x and y
     clone(){
         return new Vector2(this.x, this.y)
     }
+
+    dot(other){
+        return this.x*other.x + this.y*other.y
+    }
+
+    orthogonal(){
+        return new Vector2(this.y, -this.x) //could negate y instead of x and the math is the same
+    }
 }

@@ -15,6 +15,12 @@ class LaserController extends Component{
             this.gameObject.destroy() //destroy if reach top
         }*/
 
+        let cameraPosition = Camera.main.transform.position
+        let topEdge = cameraPosition.y - Engine.canvas.height / 2
+        if(this.transform.position.y < topEdge - 25){
+            this.gameObject.destroy() //destroy when 25 pixels off the top of the screen
+        }
+
 
         //collision check
         let myPosition = this.transform.position

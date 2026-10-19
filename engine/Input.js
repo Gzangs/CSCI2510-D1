@@ -3,10 +3,22 @@ class Input{
     static keysDownThisFrame = []
     static keysUpThisFrame = []
 
-
     static mouseButtonsDown = []
     static mouseButtonsDownThisFrame = []
     static mouseButtonsUpThisFrame = []
+    static mousePosition
+    static mousePositionLastFrame
+    static mouseDelta //how did the mouse change between frames
+    
+    static mousemove(event){
+        if(Input.mousePosition){
+            Input.mousePositionLastFrame = Input.mousePosition
+        }
+        Input.mousePosition = new Vector2(event.clientX, event.clientY)
+        if(Input.mousePositionLastFrame){
+            Input.mouseDelta = Input.mousePosition.minus(Input.mousePositionLastFrame)
+        }
+    }
 
     static keydown(event){
         if(!Input.keysDown.includes(event.code)){

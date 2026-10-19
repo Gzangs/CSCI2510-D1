@@ -3,7 +3,7 @@ class UpdateComponent extends Component {
     fireInterval = (12 / 60) // left number being lower is higher fire rate
     speed = 300
     bombCooldown = 0
-    iframes = 5
+    iframes = 3
 
     start(){
         this.timeSinceLastLaser = 0 
@@ -96,7 +96,7 @@ class UpdateComponent extends Component {
     }
 
     playerDied(){
-        if(Globals.lives >= 1){ //0 is not a life
+        if(Globals.lives > 1){ //0 is not a life
             instantiate(new MainGameObject(), new Vector2(Engine.canvas.width / 3, Engine.canvas.height / 1.125)) //respawn
         }
     }

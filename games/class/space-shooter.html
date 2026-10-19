@@ -30,11 +30,13 @@
     <script src="../../engine/Component.js"></script>
     <script src="../../engine/Time.js"></script>
     <script src="../../engine/SceneManager.js"></script>
+    <script src="../../engine/Collisions.js"></script>
 
     <script src="../../engine/components/Transform.js"></script>
     <script src="../../engine/components/Polygon.js"></script>
     <script src="../../engine/components/TextLabel.js"></script>
     <script src="../../engine/components/Camera.js"></script>
+    <script src="../../engine/components/MultiLineTextLabel.js"></script>
 
     <script src="./components/UpdateComponent.js"></script>
     <script src="./components/LaserController.js"></script>
@@ -42,6 +44,7 @@
     <script src="./components/Health.js"></script>
     <script src="./components/LevelController.js"></script>
     <script src="./components/PointsController.js"></script>
+    <script src="./components/SceneTimerController.js"></script>
 
     <script src="./gameObjects/MainGameObject.js"></script>
     <script src="./gameObjects/LaserGameObject.js"></script>
@@ -63,6 +66,20 @@
     <script>
 
         Engine.start(Level01, Settings)
+
+        //tests
+        let gameObject = new GameObject()
+        gameObject.addComponent(new Polygon(), {points: [
+            new Vector2(0, -1),
+            new Vector2(-1, 1),
+            new Vector2(1, 1)
+        ]})
+        console.assert(Collisions.isCollisionPointPolygon(new Vector2(0, 0), gameObject))
+        console.assert(Collisions.isCollisionPointPolygon(new Vector2(0, 0.99), gameObject))
+
+        console.assert(!Collisions.isCollisionPointPolygon(new Vector2(10000, 10000), gameObject))
+        console.assert(!Collisions.isCollisionPointPolygon(new Vector2(0, 1.1), gameObject))
+        console.assert(!Collisions.isCollisionPointPolygon(new Vector2(0, -1.1), gameObject))
 
     </script>
 </body>

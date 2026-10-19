@@ -16,17 +16,17 @@ class BulletController extends Component{
         let rightEdge = cameraPosition.x + Engine.canvas.width / 2
         let topEdge = cameraPosition.y - Engine.canvas.height / 2
         let bottomEdge = cameraPosition.y + Engine.canvas.height / 2
-        if(this.transform.position.x < leftEdge - 10){
-            this.gameObject.destroy() //destroy when 10 pixels off the left of the screen
+        if(this.transform.position.x < leftEdge - 50){
+            this.gameObject.destroy() //destroy when 50 pixels off the left of the screen
         }
-        if(this.transform.position.x > rightEdge + 10){
-            this.gameObject.destroy() //destroy when 10 pixels off the right of the screen
+        if(this.transform.position.x > rightEdge + 50){
+            this.gameObject.destroy() //destroy when 50 pixels off the right of the screen
         }
-        if(this.transform.position.y < topEdge - 10){
-            this.gameObject.destroy() //destroy when 10 pixels off the top of the screen
+        if(this.transform.position.y < topEdge - 50){
+            this.gameObject.destroy() //destroy when 50 pixels off the top of the screen
         }
-        if(this.transform.position.y > bottomEdge + 10){
-            this.gameObject.destroy() //destroy when 10 pixels off the bottom of the screen
+        if(this.transform.position.y > bottomEdge + 50){
+            this.gameObject.destroy() //destroy when 50 pixels off the bottom of the screen
         }
     }
 

@@ -53,4 +53,17 @@ class Assets{
             new Vector2(-8, -18),
             new Vector2(-4, -20)
         ]
+
+    static star = [
+            new Vector2(0, -20),
+            new Vector2(6, -6),
+            new Vector2(20, -6),
+            new Vector2(9, 3),
+            new Vector2(13, 18),
+            new Vector2(0, 9),
+            new Vector2(-13, 18),
+            new Vector2(-9, 3),
+            new Vector2(-20, -6),
+            new Vector2(-6, -6)
+        ]
 }

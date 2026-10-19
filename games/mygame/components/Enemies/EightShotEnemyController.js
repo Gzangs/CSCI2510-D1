@@ -1,0 +1,69 @@
+class EightShotEnemyController extends Component{
+    direction = 1
+    fireInterval = (120 / 60)
+
+    start(){
+        this.timeSinceLastBullet = 0  
+    }
+
+    update(){
+        this.timeSinceLastBullet += Time.deltaTime
+
+        this.transform.position.x += Time.deltaTime * 100 * this.direction
+        if(this.transform.position.x > 1400){
+            this.direction = -1
+        }
+        if(this.transform.position.x < 200){
+            this.direction = 1
+        }
+
+        if(this.gameObject.getComponent(Health).health <= 0){
+            /*let itemGameObject = instantiate(new SuperItemGameObject(), this.transform.position.clone())
+            let itemFillGameObject = instantiate(new SuperItemFillGameObject())
+            let itemLetterGameObject = instantiate(new SuperItemLetterGameObject(), new Vector2(-13, 14))
+            itemFillGameObject.transform.setParent(itemGameObject.transform)
+            itemLetterGameObject.transform.setParent(itemGameObject.transform)*/
+
+            let itemGameObject = instantiate(new BombItemGameObject(), this.transform.position.clone())
+            let itemLetterGameObject = instantiate(new BombItemLetterGameObject(), new Vector2(-13, 14))
+            itemLetterGameObject.transform.setParent(itemGameObject.transform)
+
+            /*let itemGameObject = instantiate(new LifeItemGameObject(), this.transform.position.clone())
+            let itemLetterGameObject = instantiate(new LifeItemLetterGameObject(), new Vector2(-13, 14))
+            itemLetterGameObject.transform.setParent(itemGameObject.transform)*/
+
+            this.gameObject.destroy()
+            let gameObjects = GameObject.findGameObjectsByType(Transform)
+                for(const gameObject of gameObjects){
+                    gameObject.broadcastMessage("updatePoints", [100]) //100 points when defeat enemy
+                }
+        }
+
+        if (this.timeSinceLastBullet > this.fireInterval){
+            this.timeSinceLastBullet = 0
+            const rotations = [Math.PI/2, Math.PI/4, 0, (7*Math.PI)/4, (3*Math.PI)/2, (5*Math.PI)/4, Math.PI, (3*Math.PI)/4] //shoot 8 ways in a circle, radians chart moment
+            for (const rotation of rotations){
+                instantiate(new BulletGameObject(), this.transform.position.clone(), rotation)
+            }
+        }
+
+        let cameraPosition = Camera.main.transform.position
+        let bottomEdge = cameraPosition.y + Engine.canvas.height / 2
+        if(this.transform.position.y > bottomEdge + 10){
+            this.gameObject.destroy() //destroy when 10 pixels off the bottom of the screen
+        }
+    }
+
+    bombUsed(){
+        let cameraPosition = Camera.main.transform.position
+        let leftEdge = cameraPosition.x - Engine.canvas.width / 2
+        let rightEdge = cameraPosition.x + Engine.canvas.width / 2
+        let topEdge = cameraPosition.y - Engine.canvas.height / 2
+        let bottomEdge = cameraPosition.y + Engine.canvas.height / 2
+
+        if(this.transform.position.x >= leftEdge && this.transform.position.x <= rightEdge &&
+        this.transform.position.y >= topEdge && this.transform.position.y <= bottomEdge){ //if on screen
+            this.gameObject.getComponent(Health).health -= 100
+        }
+    }
+}
