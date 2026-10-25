@@ -1,7 +1,7 @@
 class UpdateComponent extends Component {
 
     speed = 100
-    start(){
+    start() {
         this.timeSinceLastLaser = 0
     }
 
@@ -24,23 +24,39 @@ class UpdateComponent extends Component {
         }
 
 
-        if (this.timeSinceLastLaser > 10){// lower number is higher fire rate
+        /*if (this.timeSinceLastLaser > 10) {// lower number is higher fire rate
             this.timeSinceLastLaser = 0
             let laserGameObject = instantiate(new LaserGameObject(), this.transform.position.clone()) //get the laser just created
-            if(Math.random() < 0.5) //50/50 to be green instead of default color
-            //laserGameObject.getComponent(Polygon).fillStyle = "green"
-            //laserGameObject.getComponent(Polygon).fillStyle = "#ff00a2"
-            //laserGameObject.getComponent(Polygon).fillStyle = "#ff00a280" //last two character are alpha channel
-            laserGameObject.getComponent(Polygon).fillStyle = "rgba(255, 128, 25, 0.5)" //dont need alpha channel
+            if (Math.random() < 0.5) //50/50 to be green instead of default color
+                //laserGameObject.getComponent(Polygon).fillStyle = "green"
+                //laserGameObject.getComponent(Polygon).fillStyle = "#ff00a2"
+                //laserGameObject.getComponent(Polygon).fillStyle = "#ff00a280" //last two character are alpha channel
+                laserGameObject.getComponent(Polygon).fillStyle = "rgba(255, 128, 25, 0.5)" //dont need alpha channel
             //laserGameObject.getComponent(Polygon).fillStyle = "#FA2" //becomes FFAA22
 
-        }
+        }*/
 
         /*if (Input.keysDownThisFrame.includes("Space")) {
             let laserGameObject = instantiate(new LaserGameObject(), this.transform.position.clone())
         }*/
 
         Camera.main.transform.position = this.transform.position.clone()
-        
+        Camera.main.transform.scale = new Vector2(2, 2)
+        //Camera.main.transform.rotation = 1
+
+        /*const enemies = GameObject.findGameObjectsWithTag("Enemy") //bad code
+        for(const enemy of enemies){
+            if(Collisions.isCollisionPolygonPolygon(this.gameObject, enemy)){
+                console.log("collision")
+            }
+        } */
     }
+
+    onCollisionStay(other){
+        console.log(other)
+    }
+    onMouseOver(){
+        console.log("Mouse Over")
+    }
+
 }

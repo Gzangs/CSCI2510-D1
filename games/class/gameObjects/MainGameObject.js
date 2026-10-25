@@ -3,6 +3,7 @@ class MainGameObject extends GameObject{
         super("Main", [], "ships")
         this.addComponent(new UpdateComponent())
         this.addComponent(new Polygon(), {fillStyle:"red", points:Assets.triangle})
-        this.transform.scale = new Vector2(3, 3)
+        this.transform.scale = new Vector2(2,2)
+        this.addComponent(new Collider(), {points: Assets.triangle})
     } 
 }

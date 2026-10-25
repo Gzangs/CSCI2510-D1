@@ -13,7 +13,7 @@ class UpdateComponent extends Component {
     update() {
         this.timeSinceLastLaser += Time.deltaTime
 
-        console.log(Input.keysDown)
+        //console.log(Input.keysDown)
 
         if (Input.keysDown.includes("ShiftLeft")||Input.keysDown.includes("KeyO")) {
             this.speed = 125
@@ -78,25 +78,21 @@ class UpdateComponent extends Component {
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(12, 50)))
         }
 
-        //collision check
-        let myPosition = this.transform.position
-        let bulletGameObjects = GameObject.findGameObjectsWithTag("Bullet")
+    }
 
-        for (const bulletGameObject of bulletGameObjects) {
-            let bulletPosition = bulletGameObject.transform.position
-            let distance = myPosition.minus(bulletPosition).magnitude
-            if(distance < 30 && this.iframes <= 0){
-                this.gameObject.destroy()
-                let gameObjects = GameObject.findGameObjectsByType(Transform)
-                for(const gameObject of gameObjects){
-                    gameObject.broadcastMessage("playerDied")
-                }
+    //collision check
+    onCollisionStay(other){
+        if(other.tags.includes("Bullet") && this.iframes <= 0){
+            this.gameObject.destroy()
+            let gameObjects = GameObject.findGameObjectsByType(Transform)
+            for(const gameObject of gameObjects){
+                gameObject.broadcastMessage("playerDied")
             }
-        } 
+        }
     }
 
     playerDied(){
-        if(Globals.lives > 1){ //0 is not a life
+        if(Globals.lives > 0){ //0 is not a life
             instantiate(new MainGameObject(), new Vector2(Engine.canvas.width / 3, Engine.canvas.height / 1.125)) //respawn
         }
     }

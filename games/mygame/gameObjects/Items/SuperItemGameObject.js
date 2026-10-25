@@ -4,6 +4,6 @@ class SuperItemGameObject extends GameObject{
         this.addComponent(new SuperItemController())
         this.addComponent(new Polygon(), {fillStyle:"red", points:Assets.square})
         this.transform.scale = new Vector2(0.75, 0.75)
-        
+        this.addComponent(new Collider())
     }
 }

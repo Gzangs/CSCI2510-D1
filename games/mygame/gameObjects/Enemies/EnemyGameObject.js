@@ -5,5 +5,6 @@ class EnemyGameObject extends GameObject{
         this.transform.scale = new Vector2(2, 2)
         this.addComponent(new EnemyController())
         this.addComponent(new Health(), {health:3})
+        this.addComponent(new Collider())
     }
 }

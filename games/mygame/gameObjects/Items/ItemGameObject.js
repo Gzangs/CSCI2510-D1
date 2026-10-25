@@ -4,6 +4,6 @@ class ItemGameObject extends GameObject{
         this.addComponent(new ItemController())
         this.addComponent(new Polygon(), {fillStyle:"red", points:Assets.square})
         this.transform.scale = new Vector2(0.75, 0.75)
-        
+        this.addComponent(new Collider())
     }
 }

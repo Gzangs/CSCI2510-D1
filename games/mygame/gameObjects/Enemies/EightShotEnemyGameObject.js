@@ -5,5 +5,6 @@ class EightShotEnemyGameObject extends GameObject{
         this.transform.scale = new Vector2(2, 2)
         this.addComponent(new EightShotEnemyController())
         this.addComponent(new Health(), {health:5})
+        this.addComponent(new Collider())
     }
 }

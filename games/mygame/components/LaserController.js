@@ -21,24 +21,18 @@ class LaserController extends Component{
             this.gameObject.destroy() //destroy when 25 pixels off the top of the screen
         }
 
+    }
 
-        //collision check
-        let myPosition = this.transform.position
-        let enemyGameObjects = GameObject.findGameObjectsWithTag("Enemy")
+    //collision check
+    onCollisionStay(other){
+        if(other.tags.includes("Enemy")){
+            this.gameObject.destroy()
+            let healthComponent = other.getComponent(Health)
+            healthComponent.health -= 1 //minus 1 health
 
-        for(const enemyGameObject of enemyGameObjects){
-            let enemyPosition = enemyGameObject.transform.position
-            let distance = myPosition.minus(enemyPosition).magnitude
-            if(distance < 12){
-                this.gameObject.destroy()
-                //enemyGameObject.destroy()
-                let healthComponent = enemyGameObject.getComponent(Health)
-                healthComponent.health -= 1 //minus 1 health
-
-                let gameObjects = GameObject.findGameObjectsByType(Transform)
-                for(const gameObject of gameObjects){
-                    gameObject.broadcastMessage("updatePoints", [10]) //10 points when hit enemy
-                }
+            let gameObjects = GameObject.findGameObjectsByType(Transform)
+            for(const gameObject of gameObjects){
+                gameObject.broadcastMessage("updatePoints", [10]) //10 points when hit enemy
             }
         }
     }

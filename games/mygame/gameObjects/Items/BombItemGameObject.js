@@ -4,6 +4,6 @@ class BombItemGameObject extends GameObject{
         this.addComponent(new BombItemController())
         this.addComponent(new Polygon(), {fillStyle:"limegreen", points:Assets.square})
         this.transform.scale = new Vector2(0.75, 0.75)
-        
+        this.addComponent(new Collider())
     }
 }

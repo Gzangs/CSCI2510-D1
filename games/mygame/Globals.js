@@ -3,5 +3,5 @@ class Globals{
     static highscore = 0
     static power = 0
     static bombs = 3
-    static lives = 5
+    static lives = 3
 }

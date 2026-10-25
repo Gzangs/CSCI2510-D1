@@ -3,5 +3,6 @@ class MainGameObject extends GameObject{
         super("Main", ["Main"], "ships")
         this.addComponent(new UpdateComponent())
         this.addComponent(new Polygon(), {fillStyle:"salmon", points:Assets.rectangle})
+        this.addComponent(new Collider())
     } 
 }

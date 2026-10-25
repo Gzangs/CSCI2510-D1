@@ -5,5 +5,6 @@ class StarShotEnemyGameObject extends GameObject{
         this.transform.scale = new Vector2(2, 2)
         this.addComponent(new StarShotEnemyController())
         this.addComponent(new Health(), {health:5})
+        this.addComponent(new Collider())
     }
 }
