@@ -41,7 +41,7 @@ class UpdateComponent extends Component {
         }*/
 
         Camera.main.transform.position = this.transform.position.clone()
-        Camera.main.transform.scale = new Vector2(2, 2)
+        Camera.main.transform.scale = new Vector2(1.25, 1.25)
         //Camera.main.transform.rotation = 1
 
         /*const enemies = GameObject.findGameObjectsWithTag("Enemy") //bad code

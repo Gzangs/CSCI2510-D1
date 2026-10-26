@@ -10,9 +10,6 @@ class Engine{
         Engine.canvas = document.querySelector("#canv")
         Engine.ctx = Engine.canvas.getContext("2d")
 
-        Engine.canvas.width = window.innerWidth //custom
-        Engine.canvas.height = window.innerHeight //custom
-
         addEventListener("keydown", Input.keydown)
         addEventListener("keyup", Input.keyup)
         addEventListener("mousedown", Input.mousedown)

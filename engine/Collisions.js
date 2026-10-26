@@ -1,6 +1,6 @@
 class Collisions {
     static isCollisionPointPolygon(point, gameObject) {
-        //Move everything into world space
+        //move everything into world space
         let worldSpacePoints = []
         for (let point of gameObject.getComponent(Collider).points) {
             worldSpacePoints.push(
@@ -27,7 +27,7 @@ class Collisions {
     }
 
     static isCollisionPolygonPolygon(gameObject, gameObjectTwo) {
-        //Move everything into world space
+        //move everything into world space
         let worldSpacePoints = []
         for (let point of gameObject.getComponent(Collider).points) {
             worldSpacePoints.push(
@@ -66,7 +66,7 @@ class Collisions {
         }
 
         for (const axis of axes) {
-            //Check for overlap
+            //check for overlap
             let polygonProjections = worldSpacePoints.map(p => p.dot(axis))
             let polygonProjectionsTwo = worldSpacePointsTwo.map(p => p.dot(axis))
             if (Math.max(...polygonProjectionsTwo) < Math.min(...polygonProjections) || Math.min(...polygonProjectionsTwo) > Math.max(...polygonProjections))

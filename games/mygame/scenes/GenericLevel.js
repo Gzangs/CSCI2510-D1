@@ -1,7 +1,7 @@
 class GenericLevel extends Scene{ //this has things that every level has
     constructor(){
         super() //dont name scenes
-        this.instantiate(new MainGameObject(), new Vector2(Engine.canvas.width / 3, Engine.canvas.height / 1.125))
+        this.instantiate(new PlayerGameObject(), new Vector2(Engine.canvas.width / 3, Engine.canvas.height / 1.125))
 
         this.instantiate(new UIPanelGameObject(), new Vector2(Engine.canvas.width * 5 / 6 + 20, Engine.canvas.height / 2))
         //this.instantiate(new UIPanelGameObject(), new Vector2((Engine.canvas.width)+20, Engine.canvas.height))

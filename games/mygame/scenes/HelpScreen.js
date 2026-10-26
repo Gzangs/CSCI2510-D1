@@ -11,8 +11,8 @@ class HelpScreen extends Scene{
         super("white")
 
         let back = new GameObject("BackButton", [], "UI")
+        back.addComponent(new Polygon(), {fillStyle:"rgba(255, 0, 0, 0.3)", points:[new Vector2(0, 20), new Vector2(140, 20), new Vector2(140, -60), new Vector2(0, -60)]})
         back.addComponent(new TextLabel(), {text:"Back", font:"60px Comic Relief", fillStyle:"black"})
-        back.addComponent(new Polygon(), {fillStyle:"rgba(255, 0, 0, 0.3)", points:[new Vector2(0, 20), new Vector2(150, 20), new Vector2(150, -60), new Vector2(0, -60)]})
         back.addComponent(new Collider())
         back.addComponent(new BackButtonController())
         this.instantiate(back, new Vector2(Engine.canvas.width/2.5, Engine.canvas.height/1.1))
@@ -30,7 +30,7 @@ class HelpScreen extends Scene{
         this.instantiate(text3, new Vector2(Engine.canvas.width/10, Engine.canvas.height/10 + 180))
 
         let text4 = new GameObject("HelpText", [], "UI")
-        text4.addComponent(new TextLabel(), {text:" [B] increases bomb count by 1, [L] increases life count by 1", font:"40px Comic Relief", fillStyle:"black"})
+        text4.addComponent(new TextLabel(), {text:" [B] gives 1 bomb, [L] gives 1 life", font:"40px Comic Relief", fillStyle:"black"})
         this.instantiate(text4, new Vector2(Engine.canvas.width/10, Engine.canvas.height/10 + 240))
 
         let text5 = new GameObject("HelpText", [], "UI")

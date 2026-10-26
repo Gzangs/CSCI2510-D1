@@ -1,4 +1,4 @@
-class UpdateComponent extends Component {
+class PlayerController extends Component {
     timeSinceLastLaser = 0
     fireInterval = (12 / 60) // left number being lower is higher fire rate
     speed = 300
@@ -93,7 +93,7 @@ class UpdateComponent extends Component {
 
     playerDied(){
         if(Globals.lives > 0){ //0 is not a life
-            instantiate(new MainGameObject(), new Vector2(Engine.canvas.width / 3, Engine.canvas.height / 1.125)) //respawn
+            instantiate(new PlayerGameObject(), new Vector2(Engine.canvas.width / 3, Engine.canvas.height / 1.125)) //respawn
         }
     }
 }
