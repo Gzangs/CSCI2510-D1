@@ -20,8 +20,9 @@ class Collisions {
             //check for overlap
             let pointProjection = point.dot(axis)
             let polygonProjections = worldSpacePoints.map(p => p.dot(axis))
-            if (pointProjection < Math.min(...polygonProjections) || pointProjection > Math.max(...polygonProjections))
+            if (pointProjection < Math.min(...polygonProjections) || pointProjection > Math.max(...polygonProjections)){
                 return false
+            }
         }
         return true
     }
@@ -52,7 +53,7 @@ class Collisions {
         for (let i = 0; i < worldSpacePoints.length; i++) {
             let point1 = worldSpacePoints[i]
             let point2 = worldSpacePoints[(i + 1) % worldSpacePoints.length]
-            let edge = point2.minus(point1)
+            let edge = point2.minus(point1).normalized()
             let axis = edge.orthogonal()
             axes.push(axis)
         }
@@ -60,18 +61,31 @@ class Collisions {
         for (let i = 0; i < worldSpacePointsTwo.length; i++) {
             let point1 = worldSpacePointsTwo[i]
             let point2 = worldSpacePointsTwo[(i + 1) % worldSpacePointsTwo.length]
-            let edge = point2.minus(point1)
+            let edge = point2.minus(point1).normalized()
             let axis = edge.orthogonal()
             axes.push(axis)
         }
 
+        let minimumTransformVector = new Vector2(Number.MAX_VALUE, Number.MAX_VALUE)
         for (const axis of axes) {
             //check for overlap
             let polygonProjections = worldSpacePoints.map(p => p.dot(axis))
             let polygonProjectionsTwo = worldSpacePointsTwo.map(p => p.dot(axis))
-            if (Math.max(...polygonProjectionsTwo) < Math.min(...polygonProjections) || Math.min(...polygonProjectionsTwo) > Math.max(...polygonProjections))
+            if (Math.max(...polygonProjectionsTwo) < Math.min(...polygonProjections) || Math.min(...polygonProjectionsTwo) > Math.max(...polygonProjections)){
                 return false
+            }
+            //else the shadows overlap
+            const minOverlap = Math.min(Math.max(...polygonProjectionsTwo) - Math.min(...polygonProjections),
+                Math.max(...polygonProjections) - Math.min(...polygonProjectionsTwo))
+            if(minOverlap < minimumTransformVector.magnitude){
+                minimumTransformVector = axis.normalized().scaled(minOverlap)
+            }
         }
-        return true
+
+        if(gameObject.transform.position.minus(gameObjectTwo.transform.position).dot(minimumTransformVector) > 0){
+            return minimumTransformVector
+        }
+        //else
+        return minimumTransformVector.scaled(-1)
     }
 }

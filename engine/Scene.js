@@ -44,15 +44,33 @@ class Scene{
         }
 
         //jagged for loop to not check against itself or something already checked
+        const physicalCollisions = []
+
         for(let i = 0; i < collidable.length; i++){
             for(let j = i + 1; j < collidable.length; j++){
-                if(Collisions.isCollisionPolygonPolygon(collidable[i], collidable[j])){
-                    collidable[i].broadcastMessage("onCollisionStay", [collidable[j]])
-                    collidable[j].broadcastMessage("onCollisionStay", [collidable[i]])
+                const minimumTransformVector = Collisions.isCollisionPolygonPolygon(collidable[i], collidable[j])
+                if(minimumTransformVector){
+                    collidable[i].broadcastMessage("onCollisionStay", [collidable[j], minimumTransformVector])
+                    collidable[j].broadcastMessage("onCollisionStay", [collidable[i], minimumTransformVector.scaled(-1)])
+
+                    if(collidable[i].getComponent(RigidBody) || collidable[j].getComponent(RigidBody)){
+                        physicalCollisions.push({one:collidable[i], two:collidable[j], minimumTransformVector}) //minimumTransformVector:minimumTransformVector
+                    }
                 }
             }
         }
 
+        //handle physics
+        for(const physicalCollision of physicalCollisions){
+            if(physicalCollision.one.getComponent(RigidBody)){
+                physicalCollision.one.transform.position.plusEquals(physicalCollision.minimumTransformVector)
+            }
+            if(physicalCollision.two.getComponent(RigidBody)){
+                physicalCollision.two.transform.position.plusEquals(physicalCollision.minimumTransformVector.scaled(-1))
+            }
+
+        }
+        
 
         for(const gameObject of this.gameObjects){
             gameObject.update()
