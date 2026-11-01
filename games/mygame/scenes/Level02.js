@@ -6,6 +6,8 @@ class Level02 extends Scene{
         this.instantiate(new EightShotEnemyGameObject(), new Vector2(125, -400), Math.PI)
         this.instantiate(new HomingShotEnemyGameObject(), new Vector2(600, -600), Math.PI)
         this.instantiate(new StarShotEnemyGameObject(), new Vector2(600, -900), Math.PI)
+        this.instantiate(new ChainHomingShotEnemyGameObject(), new Vector2(300, -1400), Math.PI)
+        this.instantiate(new ShotgunHomingShotEnemyGameObject(), new Vector2(700, -1400), Math.PI)
         this.instantiate(new LevelControllerGameObject())
     }
 }

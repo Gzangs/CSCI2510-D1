@@ -10,10 +10,10 @@ class HomingShotEnemyController extends Component{
         this.timeSinceLastBullet += Time.deltaTime
 
         this.transform.position.x += Time.deltaTime * 100 * this.direction
-        if(this.transform.position.x > 1000){
+        if(this.transform.position.x > 1250){
             this.direction = -1
         }
-        if(this.transform.position.x < 500){
+        if(this.transform.position.x < 150){
             this.direction = 1
         }
 

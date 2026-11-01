@@ -4,4 +4,6 @@ class Globals{
     static power = 0
     static bombs = 3
     static lives = 3
+    static cameraScroll = true
+    static bossHealth = 0
 }

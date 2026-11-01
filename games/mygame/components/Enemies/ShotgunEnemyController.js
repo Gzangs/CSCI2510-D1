@@ -18,10 +18,8 @@ class ShotgunEnemyController extends Component{
         }*/
 
         if(this.gameObject.getComponent(Health).health <= 0){
-            let itemGameObject = instantiate(new SuperItemGameObject(), this.transform.position.clone())
-            let itemFillGameObject = instantiate(new SuperItemFillGameObject())
-            let itemLetterGameObject = instantiate(new SuperItemLetterGameObject(), new Vector2(-13, 14))
-            itemFillGameObject.transform.setParent(itemGameObject.transform)
+            let itemGameObject = instantiate(new ItemGameObject(), this.transform.position.clone())
+            let itemLetterGameObject = instantiate(new ItemLetterGameObject(), new Vector2(-13, 14))
             itemLetterGameObject.transform.setParent(itemGameObject.transform)
 
             this.gameObject.destroy()

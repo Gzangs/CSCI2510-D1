@@ -10,10 +10,10 @@ class StarShotEnemyController extends Component{
         this.timeSinceLastBullet += Time.deltaTime
 
         this.transform.position.x += Time.deltaTime * 100 * this.direction
-        if(this.transform.position.x > 750){
+        if(this.transform.position.x > 1150){
             this.direction = -1
         }
-        if(this.transform.position.x < 500){
+        if(this.transform.position.x < 250){
             this.direction = 1
         }
 
@@ -27,7 +27,7 @@ class StarShotEnemyController extends Component{
             this.gameObject.destroy()
             let gameObjects = GameObject.findGameObjectsByType(Transform)
                 for(const gameObject of gameObjects){
-                    gameObject.broadcastMessage("updatePoints", [100]) //100 points when defeat enemy
+                    gameObject.broadcastMessage("updatePoints", [250]) //250 points when defeat enemy
                 }
         }
 

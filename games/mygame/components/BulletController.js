@@ -2,7 +2,7 @@ class BulletController extends Component{
     bulletTimer = 0
 
     update(){
-        const speed = Time.deltaTime * 200
+        const speed = this.gameObject.getComponent(BulletSpeed).speed * Time.deltaTime
         this.transform.position.x -= Math.sin(this.transform.rotation) * speed
         this.transform.position.y += Math.cos(this.transform.rotation) * speed
         

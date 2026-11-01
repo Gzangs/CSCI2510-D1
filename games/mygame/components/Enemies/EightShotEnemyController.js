@@ -10,10 +10,10 @@ class EightShotEnemyController extends Component{
         this.timeSinceLastBullet += Time.deltaTime
 
         this.transform.position.x += Time.deltaTime * 100 * this.direction
-        if(this.transform.position.x > 1400){
+        if(this.transform.position.x > 1350){
             this.direction = -1
         }
-        if(this.transform.position.x < 200){
+        if(this.transform.position.x < 50){
             this.direction = 1
         }
 
@@ -35,7 +35,7 @@ class EightShotEnemyController extends Component{
             this.gameObject.destroy()
             let gameObjects = GameObject.findGameObjectsByType(Transform)
                 for(const gameObject of gameObjects){
-                    gameObject.broadcastMessage("updatePoints", [100]) //100 points when defeat enemy
+                    gameObject.broadcastMessage("updatePoints", [250]) //250 points when defeat enemy
                 }
         }
 

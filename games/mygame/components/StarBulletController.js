@@ -3,7 +3,7 @@ class StarBulletController extends Component{
     explodeTimer = 1.5
 
     update(){
-        const speed = Time.deltaTime * 200
+        const speed = this.gameObject.getComponent(BulletSpeed).speed * Time.deltaTime
         this.transform.position.x -= Math.sin(this.transform.rotation) * speed
         this.transform.position.y += Math.cos(this.transform.rotation) * speed
         

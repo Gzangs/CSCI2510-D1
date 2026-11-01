@@ -53,8 +53,11 @@ class PlayerController extends Component {
         //this.transform.position.y = Math.max(50, Math.min(Engine.canvas.height - 20, this.transform.position.y)) 
 
         let cameraScroll = 35 * Time.deltaTime //35 is scroll speed
-        Camera.main.transform.position.y -= cameraScroll
-        this.transform.position.y -= cameraScroll //offset camera scroll for player
+        if(Globals.cameraScroll == true){
+            Camera.main.transform.position.y -= cameraScroll
+            this.transform.position.y -= cameraScroll //offset camera scroll for player
+        }
+        
 
         let cameraPosition = Camera.main.transform.position
         let topEdge = cameraPosition.y - Engine.canvas.height / 2

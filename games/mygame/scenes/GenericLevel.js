@@ -10,6 +10,7 @@ class GenericLevel extends Scene{ //this has things that every level has
         this.instantiate(new PowerDisplayGameObject(), new Vector2(Engine.canvas.width / 1.4, 200))
         this.instantiate(new BombDisplayGameObject(), new Vector2(Engine.canvas.width / 1.4, 250))
         this.instantiate(new LivesDisplayGameObject(), new Vector2(Engine.canvas.width / 1.4, 300))
+        this.instantiate(new BossHealthDisplayGameObject(), new Vector2(Engine.canvas.width / 1.4, 450))
         Camera.main.transform.position = new Vector2(Engine.canvas.width / 2, Engine.canvas.height / 2)
     }
 }
