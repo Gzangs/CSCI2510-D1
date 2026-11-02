@@ -2,6 +2,8 @@ class TextLabel extends Component{
     fillStyle = "black" //still error color
     text = "[BLANK]" //error text
     font = "10px Comic Relief" //fonts.google.com for fonts you can use
+    textAlign = "left" //horizontal alignment "center", "right"
+    textBaseline = "alphabetic" //vertical alignment "top", "hanging", "middle", "alphabetic", "ideographic", "bottom"
 
     draw(ctx) {
         let position = this.transform.position
@@ -17,6 +19,9 @@ class TextLabel extends Component{
         ctx.fillStyle = this.fillStyle
 
         ctx.font = this.font
+
+        ctx.textAlign = this.textAlign
+        ctx.textBaseline= this.textBaseline
 
         ctx.fillText(this.text, 0, 0)
 

@@ -11,6 +11,8 @@ class PowerDisplayController extends Component{
     }
 
     playerDied(){
+        Globals.recoverAmount = Math.floor(Globals.power / 4)
+
         Globals.power = Math.floor(Globals.power / 2) //floor rounds down to int
     }
 }

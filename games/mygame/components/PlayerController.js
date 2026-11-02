@@ -11,6 +11,14 @@ class PlayerController extends Component {
     }
 
     update() {
+
+        if(Input.keysDown.includes("KeyM")){ //cheat
+            let gameObjects = GameObject.findGameObjectsByType(Transform)
+            for(const gameObject of gameObjects){
+                gameObject.broadcastMessage("updatePower", [1]) //1 power when get item
+            }
+        }
+
         this.timeSinceLastLaser += Time.deltaTime
 
         //console.log(Input.keysDown)
@@ -96,6 +104,10 @@ class PlayerController extends Component {
 
     playerDied(){
         if(Globals.lives > 0){ //0 is not a life
+            let itemGameObject = instantiate(new RecoverItemGameObject(), this.transform.position.clone())
+            let itemLetterGameObject = instantiate(new RecoverItemLetterGameObject(), new Vector2(-14, 14))
+            itemLetterGameObject.transform.setParent(itemGameObject.transform)
+
             instantiate(new PlayerGameObject(), new Vector2(Engine.canvas.width / 3, Engine.canvas.height / 1.125)) //respawn
         }
     }

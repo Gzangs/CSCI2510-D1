@@ -30,7 +30,7 @@ class HelpScreen extends Scene{
         this.instantiate(text3, new Vector2(Engine.canvas.width/10, Engine.canvas.height/10 + 180))
 
         let text4 = new GameObject("HelpText", [], "UI")
-        text4.addComponent(new TextLabel(), {text:" [B] gives 1 bomb, [L] gives 1 life", font:"40px Comic Relief", fillStyle:"black"})
+        text4.addComponent(new TextLabel(), {text:" [B] gives 1 bomb, [L] gives 1 life, [R] recovers some of lost power", font:"40px Comic Relief", fillStyle:"black"})
         this.instantiate(text4, new Vector2(Engine.canvas.width/10, Engine.canvas.height/10 + 240))
 
         let text5 = new GameObject("HelpText", [], "UI")

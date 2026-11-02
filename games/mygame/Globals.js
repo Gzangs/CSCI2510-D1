@@ -6,4 +6,5 @@ class Globals{
     static lives = 3
     static cameraScroll = true
     static bossHealth = 0
+    static recoverAmount = 0
 }

@@ -105,7 +105,7 @@ class BlasterBossController extends Component{
 
         if(this.transform.position.x >= leftEdge && this.transform.position.x <= rightEdge &&
         this.transform.position.y >= topEdge && this.transform.position.y <= bottomEdge){ //if on screen
-            this.gameObject.getComponent(Health).health -= 50 //bomb res
+            this.gameObject.getComponent(Health).health -= 50 //bomb res, change this later
         }
     }
 }
