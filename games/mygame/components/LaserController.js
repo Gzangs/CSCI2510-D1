@@ -24,7 +24,7 @@ class LaserController extends Component{
     }
 
     //collision check
-    onCollisionStay(other){
+    onTriggerStay(other){
         if(other.tags.includes("Enemy")){
             this.gameObject.destroy()
             let healthComponent = other.getComponent(Health)

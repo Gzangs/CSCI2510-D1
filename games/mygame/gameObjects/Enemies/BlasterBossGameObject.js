@@ -4,7 +4,8 @@ class BlasterBossGameObject extends GameObject{
         this.addComponent(new Polygon(), {fillStyle: "rgb(228, 35, 167)", points:Assets.triangle})
         this.transform.scale = new Vector2(6, 5)
         this.addComponent(new BlasterBossController())
-        this.addComponent(new Health(), {health:75})
+        this.addComponent(new Health(), {health:50})
         this.addComponent(new Collider())
+        this.addComponent(new RigidBody())
     }
 }

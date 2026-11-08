@@ -41,7 +41,7 @@ class RecoverItemController extends Component{
     }
 
     //collision check
-    onCollisionStay(other){
+    onTriggerStay(other){
         if(other.name === "Main"){
             this.destroyItem()
             let gameObjects = GameObject.findGameObjectsByType(Transform)
@@ -49,7 +49,7 @@ class RecoverItemController extends Component{
                 gameObject.broadcastMessage("updatePoints", [0])
             }
             for(const gameObject of gameObjects){
-                gameObject.broadcastMessage("updatePower", [Globals.recoverAmount])
+                gameObject.broadcastMessage("updatePower", [this.gameObject.getComponent(RecoverAmount).recoverAmount])
             }
         }
     }

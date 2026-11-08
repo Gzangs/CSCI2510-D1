@@ -10,7 +10,7 @@ class EightShotEnemyController extends Component{
         this.timeSinceLastBullet += Time.deltaTime
 
         this.transform.position.x += Time.deltaTime * 100 * this.direction
-        if(this.transform.position.x > 1350){
+        if(this.transform.position.x > Engine.canvas.width / 1.5 - 50){
             this.direction = -1
         }
         if(this.transform.position.x < 50){

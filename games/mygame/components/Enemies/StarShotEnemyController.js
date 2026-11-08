@@ -10,7 +10,7 @@ class StarShotEnemyController extends Component{
         this.timeSinceLastBullet += Time.deltaTime
 
         this.transform.position.x += Time.deltaTime * 100 * this.direction
-        if(this.transform.position.x > 1150){
+        if(this.transform.position.x > Engine.canvas.width / 1.5 - 250){
             this.direction = -1
         }
         if(this.transform.position.x < 250){

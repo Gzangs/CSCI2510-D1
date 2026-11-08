@@ -6,5 +6,6 @@ class BigShotEnemyGameObject extends GameObject{
         this.addComponent(new BigShotEnemyController())
         this.addComponent(new Health(), {health:3})
         this.addComponent(new Collider())
+        this.addComponent(new RigidBody())
     }
 }

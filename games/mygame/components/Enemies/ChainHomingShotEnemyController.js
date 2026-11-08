@@ -13,7 +13,7 @@ class ChainHomingShotEnemyController extends Component{
         this.timeSinceLastBullet += Time.deltaTime
 
         this.transform.position.x += Time.deltaTime * 100 * this.direction
-        if(this.transform.position.x > 1250){
+        if(this.transform.position.x > Engine.canvas.width / 1.5 - 150){
             this.direction = -1
         }
         if(this.transform.position.x < 150){

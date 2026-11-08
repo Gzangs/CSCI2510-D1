@@ -6,5 +6,6 @@ class HomingShotEnemyGameObject extends GameObject{
         this.addComponent(new HomingShotEnemyController())
         this.addComponent(new Health(), {health:3})
         this.addComponent(new Collider())
+        this.addComponent(new RigidBody())
     }
 }

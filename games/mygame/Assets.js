@@ -19,7 +19,7 @@ class Assets{
             new Vector2(20, 20)
         ]
 
-    static circle = [
+    static circle32 = [
             new Vector2(0, -20),
             new Vector2(4, -20),
             new Vector2(8, -18),
@@ -65,5 +65,16 @@ class Assets{
             new Vector2(-9, 3),
             new Vector2(-20, -6),
             new Vector2(-6, -6)
+        ]
+
+    static circle = [
+            new Vector2(8, -20),
+            new Vector2(20, -8),
+            new Vector2(20, 8),
+            new Vector2(8, 20),
+            new Vector2(-8, 20),
+            new Vector2(-20, 8),
+            new Vector2(-20, -8),
+            new Vector2(-8, -20)
         ]
 }

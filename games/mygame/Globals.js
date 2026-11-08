@@ -3,8 +3,7 @@ class Globals{
     static highscore = 0
     static power = 0
     static bombs = 3
-    static lives = 3
+    static lives = 5
     static cameraScroll = true
     static bossHealth = 0
-    static recoverAmount = 0
 }

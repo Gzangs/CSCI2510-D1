@@ -6,5 +6,6 @@ class ShotgunEnemyGameObject extends GameObject{
         this.addComponent(new ShotgunEnemyController())
         this.addComponent(new Health(), {health:3})
         this.addComponent(new Collider())
+        this.addComponent(new RigidBody())
     }
 }

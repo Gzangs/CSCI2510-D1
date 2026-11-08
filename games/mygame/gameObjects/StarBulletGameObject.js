@@ -5,6 +5,6 @@ class StarBulletGameObject extends GameObject{
         this.transform.scale = new Vector2(1.25, 1.25)
         this.addComponent(new BulletSpeed(), {speed: 200})
         this.addComponent(new StarBulletController())
-        this.addComponent(new Collider())
+        this.addComponent(new Collider(), {isTrigger:true})
     }
 }

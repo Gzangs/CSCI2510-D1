@@ -14,7 +14,7 @@ class BlasterBossController extends Component{
         this.timeSinceLastBullet += Time.deltaTime
 
         this.transform.position.x += Time.deltaTime * 100 * this.direction
-        if(this.transform.position.x > 1250){
+        if(this.transform.position.x > (Engine.canvas.width / 1.5 - 150)){
             this.direction = -1
         }
         if(this.transform.position.x < 150){
@@ -105,7 +105,7 @@ class BlasterBossController extends Component{
 
         if(this.transform.position.x >= leftEdge && this.transform.position.x <= rightEdge &&
         this.transform.position.y >= topEdge && this.transform.position.y <= bottomEdge){ //if on screen
-            this.gameObject.getComponent(Health).health -= 50 //bomb res, change this later
+            this.gameObject.getComponent(Health).health -= 25 //bomb res
         }
     }
 }

@@ -41,7 +41,7 @@ class LifeItemController extends Component{
     }
 
     //collision check
-    onCollisionStay(other){
+    onTriggerStay(other){
         if(other.name === "Main"){
             this.destroyItem()
             let gameObjects = GameObject.findGameObjectsByType(Transform)

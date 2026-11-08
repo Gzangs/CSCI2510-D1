@@ -6,5 +6,6 @@ class StarShotEnemyGameObject extends GameObject{
         this.addComponent(new StarShotEnemyController())
         this.addComponent(new Health(), {health:5})
         this.addComponent(new Collider())
+        this.addComponent(new RigidBody())
     }
 }

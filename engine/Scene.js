@@ -24,6 +24,12 @@ class Scene{
     }
 
     update(){
+
+        for(const gameObject of this.gameObjects){
+            gameObject.broadcastMessage("fixedUpdate")
+        }
+
+
         //collision
         const collidable = GameObject.findGameObjectsByType(Collider)
 
@@ -46,15 +52,26 @@ class Scene{
         //jagged for loop to not check against itself or something already checked
         const physicalCollisions = []
 
+        //handle polygon collisions
         for(let i = 0; i < collidable.length; i++){
             for(let j = i + 1; j < collidable.length; j++){
+                const one = collidable[i]
+                const two = collidable[j]
+                if(!one.getComponent(RigidBody) && !two.getComponent(RigidBody)){
+                    continue //jump back to loop iteration
+                }
+                
                 const minimumTransformVector = Collisions.isCollisionPolygonPolygon(collidable[i], collidable[j])
                 if(minimumTransformVector){
-                    collidable[i].broadcastMessage("onCollisionStay", [collidable[j], minimumTransformVector])
-                    collidable[j].broadcastMessage("onCollisionStay", [collidable[i], minimumTransformVector.scaled(-1)])
+                    if(!one.getComponent(Collider).isTrigger && !two.getComponent(Collider).isTrigger){
+                        collidable[i].broadcastMessage("onCollisionStay", [collidable[j], minimumTransformVector])
+                        collidable[j].broadcastMessage("onCollisionStay", [collidable[i], minimumTransformVector.scaled(-1)])
 
-                    if(collidable[i].getComponent(RigidBody) || collidable[j].getComponent(RigidBody)){
-                        physicalCollisions.push({one:collidable[i], two:collidable[j], minimumTransformVector}) //minimumTransformVector:minimumTransformVector
+                        physicalCollisions.push({ one: collidable[i], two: collidable[j], minimumTransformVector}) //minimumTransformVector:minimumTransformVector
+                    }
+                    else{
+                        collidable[i].broadcastMessage("onTriggerStay", [collidable[j], minimumTransformVector])
+                        collidable[j].broadcastMessage("onTriggerStay", [collidable[i], minimumTransformVector.scaled(-1)])
                     }
                 }
             }

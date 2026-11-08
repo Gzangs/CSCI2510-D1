@@ -4,6 +4,8 @@ class PlayerController extends Component {
     speed = 300
     bombCooldown = 0
     iframes = 3
+    respawnHandled = false
+    recoveryAmount = 0
 
     start(){
         this.timeSinceLastLaser = 0 
@@ -92,7 +94,7 @@ class PlayerController extends Component {
     }
 
     //collision check
-    onCollisionStay(other){
+    onTriggerStay(other){
         if(other.tags.includes("Bullet") && this.iframes <= 0){
             this.gameObject.destroy()
             let gameObjects = GameObject.findGameObjectsByType(Transform)
@@ -102,11 +104,30 @@ class PlayerController extends Component {
         }
     }
 
+    onCollisionStay(other){
+        if(other.tags.includes("Enemy") && this.iframes <= 0){
+            this.gameObject.destroy()
+            let gameObjects = GameObject.findGameObjectsByType(Transform)
+            for(const gameObject of gameObjects){
+                gameObject.broadcastMessage("playerDied")
+            }
+        }
+    }
+
     playerDied(){
+        if(this.respawnHandled){
+            return
+        }
+        this.respawnHandled = true
+
         if(Globals.lives > 0){ //0 is not a life
-            let itemGameObject = instantiate(new RecoverItemGameObject(), this.transform.position.clone())
-            let itemLetterGameObject = instantiate(new RecoverItemLetterGameObject(), new Vector2(-14, 14))
-            itemLetterGameObject.transform.setParent(itemGameObject.transform)
+            this.recoveryAmount = Math.floor(Globals.power / 4)
+            if(this.recoveryAmount > 0){
+                let itemGameObject = instantiate(new RecoverItemGameObject(), this.transform.position.clone())
+                itemGameObject.getComponent(RecoverAmount).recoverAmount = this.recoveryAmount
+                let itemLetterGameObject = instantiate(new RecoverItemLetterGameObject(), new Vector2(-14, 14))
+                itemLetterGameObject.transform.setParent(itemGameObject.transform)
+            }
 
             instantiate(new PlayerGameObject(), new Vector2(Engine.canvas.width / 3, Engine.canvas.height / 1.125)) //respawn
         }

@@ -6,5 +6,6 @@ class EightShotEnemyGameObject extends GameObject{
         this.addComponent(new EightShotEnemyController())
         this.addComponent(new Health(), {health:5})
         this.addComponent(new Collider())
+        this.addComponent(new RigidBody())
     }
 }

@@ -6,5 +6,6 @@ class ChainShotEnemyGameObject extends GameObject{
         this.addComponent(new ChainShotEnemyController())
         this.addComponent(new Health(), {health:3})
         this.addComponent(new Collider())
+        this.addComponent(new RigidBody())
     }
 }
