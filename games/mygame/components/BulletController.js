@@ -1,10 +1,13 @@
 class BulletController extends Component{
     bulletTimer = 0
 
-    update(){
+    fixedUpdate(){
         const speed = this.gameObject.getComponent(BulletSpeed).speed * Time.deltaTime
         this.transform.position.x -= Math.sin(this.transform.rotation) * speed
         this.transform.position.y += Math.cos(this.transform.rotation) * speed
+    }
+    
+    update(){
         
         /*this.bulletTimer += 1
         if (this.bulletTimer > 325){

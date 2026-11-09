@@ -15,6 +15,7 @@ class Engine{
         addEventListener("mousedown", Input.mousedown)
         addEventListener("mouseup", Input.mouseup)
         addEventListener("mousemove", Input.mousemove)
+        //addEventListener("contextMenu", e=>e.preventDefault()) remove context menu from right click
 
         SceneManager.nextScene = nextScene
 

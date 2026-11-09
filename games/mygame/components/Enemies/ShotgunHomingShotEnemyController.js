@@ -6,9 +6,7 @@ class ShotgunHomingShotEnemyController extends Component{
         this.timeSinceLastBullet = 0  
     }
 
-    update(){
-        this.timeSinceLastBullet += Time.deltaTime
-
+    fixedUpdate(){
         this.transform.position.x += Time.deltaTime * 100 * this.direction
         if(this.transform.position.x > Engine.canvas.width / 1.5 - 150){
             this.direction = -1
@@ -16,6 +14,10 @@ class ShotgunHomingShotEnemyController extends Component{
         if(this.transform.position.x < 150){
             this.direction = 1
         }
+    }
+
+    update(){
+        this.timeSinceLastBullet += Time.deltaTime
 
         if(this.gameObject.getComponent(Health).health <= 0){
             let itemGameObject = instantiate(new SuperItemGameObject(), this.transform.position.clone())

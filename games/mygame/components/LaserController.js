@@ -1,9 +1,11 @@
 class LaserController extends Component{
     laserTimer = 0
 
-    update(){
+    fixedUpdate(){
         this.transform.position.y -= Time.deltaTime * 300 //bullet speed
+    }
 
+    update(){
         this.laserTimer += 1
         //console.log("laser updated")
         if (this.laserTimer > (90 + (Globals.power*2))){ //power increases range

@@ -12,19 +12,7 @@ class PlayerController extends Component {
         this.bombCooldown = 0
     }
 
-    update() {
-
-        if(Input.keysDown.includes("KeyM")){ //cheat
-            let gameObjects = GameObject.findGameObjectsByType(Transform)
-            for(const gameObject of gameObjects){
-                gameObject.broadcastMessage("updatePower", [1]) //1 power when get item
-            }
-        }
-
-        this.timeSinceLastLaser += Time.deltaTime
-
-        //console.log(Input.keysDown)
-
+    fixedUpdate(){
         if (Input.keysDown.includes("ShiftLeft")||Input.keysDown.includes("KeyO")) {
             this.speed = 125
         }
@@ -45,6 +33,37 @@ class PlayerController extends Component {
             this.transform.position.y = this.transform.position.y + Time.deltaTime * this.speed
         }
 
+        this.transform.position.x = Math.max(20, Math.min(Engine.canvas.width / 1.5, this.transform.position.x)) //keep player in bounds
+        //this.transform.position.y = Math.max(50, Math.min(Engine.canvas.height - 20, this.transform.position.y)) 
+
+        //Camera.main.transform.position = this.transform.position.clone() //follow player
+        //Camera.main.transform.position.y -= 25 * Time.deltaTime //move up
+
+        let cameraScroll = 35 * Time.deltaTime //35 is scroll speed
+        if(Globals.cameraScroll == true){
+            Camera.main.transform.position.y -= cameraScroll
+            this.transform.position.y -= cameraScroll //offset camera scroll for player
+        }
+
+        let cameraPosition = Camera.main.transform.position
+        let topEdge = cameraPosition.y - Engine.canvas.height / 2
+        let bottomEdge = cameraPosition.y + Engine.canvas.height / 2
+        this.transform.position.y = Math.max(topEdge + 50, Math.min(bottomEdge - 20, this.transform.position.y)) //keep player in bounds
+    }
+
+    update() {
+
+        if(Input.keysDown.includes("KeyM")){ //cheat
+            let gameObjects = GameObject.findGameObjectsByType(Transform)
+            for(const gameObject of gameObjects){
+                gameObject.broadcastMessage("updatePower", [1]) //1 power when get item
+            }
+        }
+
+        this.timeSinceLastLaser += Time.deltaTime
+
+        //console.log(Input.keysDown)
+
         if ((Input.keysDown.includes("KeyP")||Input.keysDown.includes("KeyZ")) && Globals.bombs > 0 && this.bombCooldown <= 0){
             let gameObjects = GameObject.findGameObjectsByType(Transform)
             for(const gameObject of gameObjects){
@@ -54,26 +73,7 @@ class PlayerController extends Component {
         }
 
         this.bombCooldown -= Time.deltaTime
-        this.iframes -= Time.deltaTime
-
-        //Camera.main.transform.position = this.transform.position.clone() //follow player
-        //Camera.main.transform.position.y -= 25 * Time.deltaTime //move up
-
-        this.transform.position.x = Math.max(20, Math.min(Engine.canvas.width / 1.5, this.transform.position.x)) //keep player in bounds
-        //this.transform.position.y = Math.max(50, Math.min(Engine.canvas.height - 20, this.transform.position.y)) 
-
-        let cameraScroll = 35 * Time.deltaTime //35 is scroll speed
-        if(Globals.cameraScroll == true){
-            Camera.main.transform.position.y -= cameraScroll
-            this.transform.position.y -= cameraScroll //offset camera scroll for player
-        }
-        
-
-        let cameraPosition = Camera.main.transform.position
-        let topEdge = cameraPosition.y - Engine.canvas.height / 2
-        let bottomEdge = cameraPosition.y + Engine.canvas.height / 2
-        this.transform.position.y = Math.max(topEdge + 50, Math.min(bottomEdge - 20, this.transform.position.y)) //keep player in bounds
-
+        this.iframes -= Time.deltaTime 
 
         if ((this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.002) && Globals.power < 33)){ //more power increases fire rate
             this.timeSinceLastLaser = 0
@@ -89,6 +89,13 @@ class PlayerController extends Component {
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(-12, 50)))
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(0, 50)))
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(12, 50)))
+        }
+
+        if(this.iframes > 0){
+            this.gameObject.getComponent(Polygon).fillStyle = "rgba(250, 128, 114, 0.75)"
+        }
+        else{
+            this.gameObject.getComponent(Polygon).fillStyle = "rgba(250, 128, 114, 1)"
         }
 
     }
