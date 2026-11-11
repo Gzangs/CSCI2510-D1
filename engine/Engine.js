@@ -5,6 +5,13 @@ class Engine{
 
     static layers = ["default", "UI"]
 
+    static aspectRatio
+
+    static cameraWidthInWorldSpace
+
+    static letterBoxingWidth = 0
+    static letterBoxingHeight = 0
+
 
     static start(nextScene, settings){
         Engine.canvas = document.querySelector("#canv")
@@ -21,6 +28,8 @@ class Engine{
 
         if(settings){
             Engine.layers = settings.layers
+            Engine.aspectRatio = settings.aspectRatio
+            Engine.cameraWidthInWorldSpace = settings.cameraWidthInWorldSpace
         }
 
         requestAnimationFrame(Engine.gameLoop)
