@@ -56,9 +56,16 @@ class PlayerController extends Component {
         if(Input.keysDown.includes("KeyM")){ //cheat
             let gameObjects = GameObject.findGameObjectsByType(Transform)
             for(const gameObject of gameObjects){
-                gameObject.broadcastMessage("updatePower", [1]) //1 power when get item
+                gameObject.broadcastMessage("updatePower", [1])
             }
         }
+        if(Input.keysDown.includes("KeyN")){ //cheat
+            let gameObjects = GameObject.findGameObjectsByType(Transform)
+            for(const gameObject of gameObjects){
+                gameObject.broadcastMessage("updateLives", [1])
+            }
+        }
+
 
         this.timeSinceLastLaser += Time.deltaTime
 
@@ -75,16 +82,16 @@ class PlayerController extends Component {
         this.bombCooldown -= Time.deltaTime
         this.iframes -= Time.deltaTime 
 
-        if ((this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.002) && Globals.power < 33)){ //more power increases fire rate
+        if ((this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.0015) && Globals.power < 33)){ //more power increases fire rate
             this.timeSinceLastLaser = 0
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(0, 50))) //minus will offset laser to front of ship
         }
-        else if ((this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.0015) && Globals.power < 67)){ //double shot
+        else if ((this.timeSinceLastLaser > this.fireInterval - ((Globals.power - 33) * 0.0015) && Globals.power < 67)){ //double shot
             this.timeSinceLastLaser = 0
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(-6, 50)))
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(6, 50)))
         }
-        else if ((this.timeSinceLastLaser > this.fireInterval - (Globals.power * 0.0013) && Globals.power <= 100)){ //triple shot
+        else if ((this.timeSinceLastLaser > this.fireInterval - ((Globals.power - 67) * 0.0015) && Globals.power <= 100)){ //triple shot
             this.timeSinceLastLaser = 0
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(-12, 50)))
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(0, 50)))
@@ -102,22 +109,14 @@ class PlayerController extends Component {
 
     //collision check
     onTriggerStay(other){
-        if(other.tags.includes("Bullet") && this.iframes <= 0){
-            this.gameObject.destroy()
-            let gameObjects = GameObject.findGameObjectsByType(Transform)
-            for(const gameObject of gameObjects){
-                gameObject.broadcastMessage("playerDied")
-            }
+        if(other.tags.includes("Bullet") && this.iframes <= 0 && !this.respawnHandled){
+            this.playerDied()
         }
     }
 
     onCollisionStay(other){
-        if(other.tags.includes("Enemy") && this.iframes <= 0){
-            this.gameObject.destroy()
-            let gameObjects = GameObject.findGameObjectsByType(Transform)
-            for(const gameObject of gameObjects){
-                gameObject.broadcastMessage("playerDied")
-            }
+        if(other.tags.includes("Enemy") && this.iframes <= 0 && !this.respawnHandled){
+            this.playerDied()
         }
     }
 
@@ -126,6 +125,14 @@ class PlayerController extends Component {
             return
         }
         this.respawnHandled = true
+
+        this.gameObject.destroy()
+        let gameObjects = GameObject.findGameObjectsByType(Transform)
+        for(const gameObject of gameObjects){
+            if(gameObject !== this.gameObject){
+                gameObject.broadcastMessage("playerDied")
+            }
+        }
 
         if(Globals.lives > 0){ //0 is not a life
             this.recoveryAmount = Math.floor(Globals.power / 4)

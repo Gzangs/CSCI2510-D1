@@ -1,0 +1,11 @@
+class KnightBossGameObject extends GameObject{
+    constructor(){
+        super("KnightBoss", ["Enemy", "Boss"], "ships") //named enemy and tagged enemy
+        this.addComponent(new Polygon(), {fillStyle: "rgb(0, 0, 0)", points:Assets.triangle})
+        this.transform.scale = new Vector2(6, 5)
+        this.addComponent(new KnightBossController())
+        this.addComponent(new Health(), {health:300})
+        this.addComponent(new Collider())
+        this.addComponent(new RigidBody())
+    }
+}

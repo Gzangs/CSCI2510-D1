@@ -42,7 +42,7 @@ class BlasterBossController extends Component{
             if (this.chainInterval >= this.chainShotDelay){
                 const mainGameObject = GameObject.find("Main")
                 const baseRotation = Math.atan2(this.transform.position.x - mainGameObject.transform.position.x,
-                    mainGameObject.transform.position.y - 100 - this.transform.position.y)
+                    mainGameObject.transform.position.y - this.transform.position.y)
                 const rotations = [baseRotation, baseRotation - Math.PI / 6, baseRotation + Math.PI / 6]
                 for (const rotation of rotations){
                     instantiate(new BulletGameObject(), this.transform.position.clone(), rotation)
@@ -66,7 +66,7 @@ class BlasterBossController extends Component{
             if (this.chainInterval >= this.chainShotDelay){
                 const mainGameObject = GameObject.find("Main")
                 const baseRotation = Math.atan2(this.transform.position.x - mainGameObject.transform.position.x,
-                    mainGameObject.transform.position.y - 100 - this.transform.position.y)
+                    mainGameObject.transform.position.y - this.transform.position.y)
                 const rotations = [baseRotation - Math.PI / 20, baseRotation - Math.PI / 6, baseRotation + Math.PI / 20, baseRotation + Math.PI / 6]
                 for (const rotation of rotations){
                     instantiate(new BulletGameObject(), this.transform.position.clone(), rotation)
