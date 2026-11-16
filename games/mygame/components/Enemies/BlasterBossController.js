@@ -1,7 +1,7 @@
 class BlasterBossController extends Component{
     direction = 1
-    fireInterval = (160 / 60)
-    chainShotDelay = 0.3
+    fireInterval = (80 / 60)
+    chainShotDelay = 0.15
     chainInterval = 0
     bulletsRemaining = 4
     shotMode = 0
@@ -11,7 +11,7 @@ class BlasterBossController extends Component{
     }
 
     fixedUpdate(){
-        this.transform.position.x += Time.deltaTime * 100 * this.direction
+        this.transform.position.x += Time.deltaTime * 200 * this.direction
         if(this.transform.position.x > (Engine.canvas.width / 1.5 - 150)){
             this.direction = -1
         }

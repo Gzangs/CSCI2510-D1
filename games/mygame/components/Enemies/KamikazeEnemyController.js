@@ -1,6 +1,6 @@
 class KamikazeEnemyController extends Component{
     direction = 1
-    fireInterval = (120 / 60)
+    fireInterval = (60 / 60)
     speed = 0
 
     start(){
@@ -39,7 +39,7 @@ class KamikazeEnemyController extends Component{
         this.transform.position.y >= topEdge && this.transform.position.y <= bottomEdge){ //if on screen
             const player = GameObject.find("Main")
             const direction = player.transform.position.minus(this.transform.position)
-            this.speed = 125
+            this.speed = 250
             this.transform.rotation = Math.atan2(direction.y, direction.x) + Math.PI / 2
             this.transform.position.plusEquals(direction.normalized().scaled(this.speed * Time.deltaTime))
         }

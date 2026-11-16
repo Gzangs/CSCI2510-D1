@@ -3,5 +3,6 @@ class Settings{
     //static aspectRatio = 2048/991 //exact browser resolution
     static aspectRatio = window.innerWidth / window.innerHeight
     static cameraWidthInWorldSpace = window.innerWidth
+    static collisionLayers = [["lasers", "ships"], ["ships", "ships"]] //pick pairs of collisions that should happen
 
 }

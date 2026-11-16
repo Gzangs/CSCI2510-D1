@@ -1,7 +1,7 @@
 class ChainShotEnemyController extends Component{
     direction = 1
-    fireInterval = (160 / 60)
-    chainShotDelay = 0.3
+    fireInterval = (80 / 60)
+    chainShotDelay = 0.15
     chainInterval = 0
     bulletsRemaining = 2
 
@@ -12,7 +12,7 @@ class ChainShotEnemyController extends Component{
     update(){
         this.timeSinceLastBullet += Time.deltaTime
 
-        /*this.transform.position.x += Time.deltaTime * 100 * this.direction
+        /*this.transform.position.x += Time.deltaTime * 200 * this.direction
         if(this.transform.position.x > 750){
             this.direction = -1
         }

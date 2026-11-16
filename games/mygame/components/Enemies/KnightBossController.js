@@ -1,8 +1,8 @@
 class KnightBossController extends Component{
     direction = 1
-    fireInterval = (160 / 60)
-    fireIntervalTwo = (200 / 60)
-    chainShotDelay = 0.3
+    fireInterval = (80 / 60)
+    fireIntervalTwo = (100 / 60)
+    chainShotDelay = 0.15
     chainInterval = 0
     bulletsRemaining = 4
     shotMode = -1

@@ -1,12 +1,13 @@
-class KnifeBulletController extends Component{
+class StarBulletController extends Component{
     bulletTimer = 0
+    explodeTimer = 0.75
 
     fixedUpdate(){
         const speed = this.gameObject.getComponent(BulletSpeed).speed * Time.deltaTime
         this.transform.position.x -= Math.sin(this.transform.rotation) * speed
         this.transform.position.y += Math.cos(this.transform.rotation) * speed
     }
-    
+
     update(){
         
         /*this.bulletTimer += 1
@@ -30,6 +31,16 @@ class KnifeBulletController extends Component{
         }
         if(this.transform.position.y > bottomEdge + 50){
             this.gameObject.destroy() //destroy when 50 pixels off the bottom of the screen
+        }
+
+        this.explodeTimer -= Time.deltaTime
+
+        if(this.explodeTimer <= 0){
+            const rotations = [Math.PI/6, 11*Math.PI/6, Math.PI/2, 3*Math.PI/2, Math.PI] //shoot 5 ways
+            for (const rotation of rotations){
+                instantiate(new BulletGameObject(), this.transform.position.clone(), rotation)
+            }
+            this.gameObject.destroy()
         }
     }
 

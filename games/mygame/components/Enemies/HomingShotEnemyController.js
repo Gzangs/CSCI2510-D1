@@ -1,13 +1,13 @@
 class HomingShotEnemyController extends Component{
     direction = 1
-    fireInterval = (120 / 60)
+    fireInterval = (60 / 60)
 
     start(){
         this.timeSinceLastBullet = 0  
     }
 
     fixedUpdate(){
-        this.transform.position.x += Time.deltaTime * 100 * this.direction
+        this.transform.position.x += Time.deltaTime * 200 * this.direction
         if(this.transform.position.x > Engine.canvas.width / 1.5 - 150){
             this.direction = -1
         }

@@ -1,6 +1,6 @@
 class EnemyController extends Component{
     direction = 1
-    fireInterval = (120 / 60)
+    fireInterval = (60 / 60)
 
     start(){
         this.timeSinceLastBullet = 0  
@@ -9,7 +9,7 @@ class EnemyController extends Component{
     update(){
         this.timeSinceLastBullet += Time.deltaTime
 
-        /*this.transform.position.x += Time.deltaTime * 100 * this.direction
+        /*this.transform.position.x += Time.deltaTime * 200 * this.direction
         if(this.transform.position.x > 750){
             this.direction = -1
         }

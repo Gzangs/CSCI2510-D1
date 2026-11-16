@@ -12,6 +12,10 @@ class Engine{
     static letterBoxingWidth = 0
     static letterBoxingHeight = 0
 
+    static collisionLayers = []
+
+    static lastTimeStep
+
 
     static start(nextScene, settings){
         Engine.canvas = document.querySelector("#canv")
@@ -30,23 +34,35 @@ class Engine{
             Engine.layers = settings.layers
             Engine.aspectRatio = settings.aspectRatio
             Engine.cameraWidthInWorldSpace = settings.cameraWidthInWorldSpace
+            if(settings.collisionLayers){
+                Engine.collisionLayers = settings.collisionLayers
+            }
         }
 
         requestAnimationFrame(Engine.gameLoop)
     }
 
-    static gameLoop() {
-            SceneManager.update()
-
-            Engine.update()
-            Engine.draw()
-
-            Time.update()
-
-            Input.update()
-
-            requestAnimationFrame(Engine.gameLoop)
+    static gameLoop(timestamp) {
+        if(!Engine.lastTimeStep){
+            Engine.lastTimeStep = timestamp
         }
+        else{
+            const diffInMilliseconds = timestamp - Engine.lastTimeStep
+            const diffInSeconds = diffInMilliseconds / 1000
+            Time.deltaTime = Math.min(diffInSeconds, 1/60) //mathmin is for debugging time freeze
+            Engine.lastTimeStep = timestamp
+        }
+        SceneManager.update()
+
+        Engine.update()
+        Engine.draw()
+
+        Time.update()
+
+        Input.update()
+
+        requestAnimationFrame(Engine.gameLoop)
+    }
 
     static update(){
         //update()

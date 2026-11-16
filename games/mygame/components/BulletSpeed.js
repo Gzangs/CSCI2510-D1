@@ -1,3 +1,3 @@
 class BulletSpeed extends Component{
-    speed = 200
+    speed = 400
 }

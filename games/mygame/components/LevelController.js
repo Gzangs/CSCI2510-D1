@@ -9,7 +9,7 @@ class LevelController extends Component{
         if(enemyGameObjects.length == 0){
             //if no enemies, wait and change scene to next level
             this.levelWaitTime += Time.deltaTime
-            if(this.levelWaitTime > 10 && Globals.lives > 0){
+            if(this.levelWaitTime > 5 && Globals.lives > 0){
                 if(SceneManager.currentScene instanceof Level01){    
                     SceneManager.loadScene(Level02)
                 }

@@ -1,6 +1,6 @@
 class SlashBulletController extends Component{
     bulletTimer = 0
-    countdownTimer = 1.5
+    countdownTimer = 0.75
 
     fixedUpdate(){
 
@@ -9,7 +9,7 @@ class SlashBulletController extends Component{
     update(){
         
         this.bulletTimer = this.bulletTimer + Time.deltaTime
-        if (this.bulletTimer > 2){
+        if (this.bulletTimer > 1){
             this.gameObject.destroy()
         }
         

@@ -2,7 +2,7 @@ class LaserController extends Component{
     laserTimer = 0
 
     fixedUpdate(){
-        this.transform.position.y -= Time.deltaTime * 300 //bullet speed
+        this.transform.position.y -= Time.deltaTime * 600 //bullet speed
     }
 
     update(){

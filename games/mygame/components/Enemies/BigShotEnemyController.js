@@ -1,6 +1,6 @@
 class BigShotEnemyController extends Component{
     direction = 1
-    fireInterval = (120 / 60)
+    fireInterval = (60 / 60)
 
     start(){
         this.timeSinceLastBullet = 0  

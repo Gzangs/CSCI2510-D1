@@ -1,7 +1,7 @@
 class PlayerController extends Component {
     timeSinceLastLaser = 0
     fireInterval = (12 / 60) // left number being lower is higher fire rate
-    speed = 300
+    speed = 600
     bombCooldown = 0
     iframes = 3
     respawnHandled = false
@@ -14,10 +14,10 @@ class PlayerController extends Component {
 
     fixedUpdate(){
         if (Input.keysDown.includes("ShiftLeft")||Input.keysDown.includes("KeyO")) {
-            this.speed = 125
+            this.speed = 250
         }
         else{
-            this.speed = 300
+            this.speed = 600
         }
 
         if (Input.keysDown.includes("ArrowRight")||Input.keysDown.includes("KeyD")) {
@@ -39,7 +39,7 @@ class PlayerController extends Component {
         //Camera.main.transform.position = this.transform.position.clone() //follow player
         //Camera.main.transform.position.y -= 25 * Time.deltaTime //move up
 
-        let cameraScroll = 35 * Time.deltaTime //35 is scroll speed
+        let cameraScroll = 70 * Time.deltaTime //70 is scroll speed
         if(Globals.cameraScroll == true){
             Camera.main.transform.position.y -= cameraScroll
             this.transform.position.y -= cameraScroll //offset camera scroll for player
@@ -91,7 +91,7 @@ class PlayerController extends Component {
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(-6, 50)))
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(6, 50)))
         }
-        else if ((this.timeSinceLastLaser > this.fireInterval - ((Globals.power - 67) * 0.0015) && Globals.power <= 100)){ //triple shot
+        else if ((this.timeSinceLastLaser > this.fireInterval - ((Globals.power - 67) * 0.0015) && Globals.power <= 999)){ //triple shot
             this.timeSinceLastLaser = 0
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(-12, 50)))
             instantiate(new LaserGameObject(), this.transform.position.clone().minus(new Vector2(0, 50)))
