@@ -3,6 +3,6 @@ class HighScoreController extends Component{
         if (Globals.points > Globals.highscore){
             Globals.highscore = Globals.points
         }
-        this.gameObject.getComponent(TextLabel).text = "High Score: " + Globals.highscore + " Points"
+        this.gameObject.getComponent(TextLabel).text = "HiScore: " + Globals.highscore + " Points"
     }
 }

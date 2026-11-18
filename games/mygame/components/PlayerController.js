@@ -33,9 +33,6 @@ class PlayerController extends Component {
             this.transform.position.y = this.transform.position.y + Time.deltaTime * this.speed
         }
 
-        this.transform.position.x = Math.max(20, Math.min(Engine.canvas.width / 1.5, this.transform.position.x)) //keep player in bounds
-        //this.transform.position.y = Math.max(50, Math.min(Engine.canvas.height - 20, this.transform.position.y)) 
-
         //Camera.main.transform.position = this.transform.position.clone() //follow player
         //Camera.main.transform.position.y -= 25 * Time.deltaTime //move up
 
@@ -46,9 +43,13 @@ class PlayerController extends Component {
         }
 
         let cameraPosition = Camera.main.transform.position
+        let leftEdge = cameraPosition.x - Engine.canvas.width / 2
+        let rightEdge = cameraPosition.x + Engine.canvas.width / 2
         let topEdge = cameraPosition.y - Engine.canvas.height / 2
         let bottomEdge = cameraPosition.y + Engine.canvas.height / 2
         this.transform.position.y = Math.max(topEdge + 50, Math.min(bottomEdge - 20, this.transform.position.y)) //keep player in bounds
+        this.transform.position.x = Math.max(leftEdge + 20, Math.min(Engine.canvas.width / 1.5, this.transform.position.x)) //keep player in bounds
+        //this.transform.position.y = Math.max(50, Math.min(Engine.canvas.height - 20, this.transform.position.y)) 
     }
 
     update() {

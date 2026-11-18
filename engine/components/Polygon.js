@@ -1,12 +1,15 @@
 class Polygon extends Component {
     fillStyle = "magenta" //bug color
     points = []
+    alpha = 1 //1 is opaque
 
     draw(ctx) {
         let position = this.transform.position
 
         //singaling to context that i will draw something
         ctx.save()
+
+        ctx.globalAlpha = this.alpha
 
         //set center of object, trasnlate is algebra definition
         //ctx.translate(position.x, position.y)
