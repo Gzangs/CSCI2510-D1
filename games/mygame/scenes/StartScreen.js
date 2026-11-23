@@ -19,12 +19,12 @@ class StartScreen extends Scene{
         super("white")
 
         let title = new RectGameObject("TitleText", [], "UI")
-        title.addComponent(new TextLabel(), {text:"ThreeRake", fillStyle:"black"})
+        title.addComponent(new TextLabel(), {text:"ThreeRake", fillStyle:"black", textAlign:"center"})
         //this.instantiate(title, new Vector2(window.innerWidth/3, window.innerHeight/4)) //window instead of engine because this instanly loads in first scene
 
         const titleText = this.instantiate(title)
-        titleText.transform.anchorMin = new Vector2(0.3, 0.3)
-        titleText.transform.anchorMax = new Vector2(0.3, 0.3)
+        titleText.transform.anchorMin = new Vector2(0.5, 0.3)
+        titleText.transform.anchorMax = new Vector2(0.5, 0.3)
         titleText.transform.offsetUpperLeft = new Vector2(-30, -30)
         titleText.transform.offsetLowerRight = new Vector2(0, 0)
         
@@ -36,7 +36,7 @@ class StartScreen extends Scene{
         //this.instantiate(start, new Vector2(window.innerWidth/2.5, window.innerHeight/2))
 
         let startText = new RectGameObject("StartButton", [], "UI")
-        startText.addComponent(new TextLabel(), {text:"Start", fillStyle:"black"})
+        startText.addComponent(new TextLabel(), {text:"Start", fillStyle:"black", textAlign:"center"})
 
         const startButton = this.instantiate(start)
         startButton.transform.anchorMin = new Vector2(0.5, 0.5)
@@ -45,10 +45,10 @@ class StartScreen extends Scene{
         startButton.transform.offsetLowerRight = new Vector2(0, 0)
 
         const startButtonText = this.instantiate(startText)
-        startButtonText.transform.anchorMin = new Vector2(0.475, 0.525)
-        startButtonText.transform.anchorMax = new Vector2(0.475, 0.525)
-        startButtonText.transform.offsetUpperLeft = new Vector2(-50, -15)
-        startButtonText.transform.offsetLowerRight = new Vector2(-40, -5)
+        startButtonText.transform.anchorMin = new Vector2(0.5, 0.525)
+        startButtonText.transform.anchorMax = new Vector2(0.5, 0.525)
+        startButtonText.transform.offsetUpperLeft = new Vector2(-10, -10)
+        startButtonText.transform.offsetLowerRight = new Vector2(0, 0)
         
 
         let help = new RectGameObject("HelpButton", [], "UI")
@@ -58,7 +58,7 @@ class StartScreen extends Scene{
         //this.instantiate(help, new Vector2(window.innerWidth/2.5, window.innerHeight/2 + 100))
 
         let helpText = new RectGameObject("HelpButton", [], "UI")
-        helpText.addComponent(new TextLabel(), {text:"Help", fillStyle:"black"})
+        helpText.addComponent(new TextLabel(), {text:"Help", fillStyle:"black", textAlign:"center"})
 
         const helpButton = this.instantiate(help)
         helpButton.transform.anchorMin = new Vector2(0.5, 0.7)
@@ -67,9 +67,9 @@ class StartScreen extends Scene{
         helpButton.transform.offsetLowerRight = new Vector2(0, 0)
 
         const helpButtonText = this.instantiate(helpText)
-        helpButtonText.transform.anchorMin = new Vector2(0.475, 0.725)
-        helpButtonText.transform.anchorMax = new Vector2(0.475, 0.725)
-        helpButtonText.transform.offsetUpperLeft = new Vector2(-50, -15)
-        helpButtonText.transform.offsetLowerRight = new Vector2(-40, -5)
+        helpButtonText.transform.anchorMin = new Vector2(0.5, 0.725)
+        helpButtonText.transform.anchorMax = new Vector2(0.5, 0.725)
+        helpButtonText.transform.offsetUpperLeft = new Vector2(-10, -10)
+        helpButtonText.transform.offsetLowerRight = new Vector2(0, 0)
     }
 }

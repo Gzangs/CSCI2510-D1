@@ -17,7 +17,7 @@ class HelpScreen extends Scene{
         //this.instantiate(back, new Vector2(Engine.canvas.width/2.5, Engine.canvas.height/1.1))
 
         let backText = new RectGameObject("BackButton", [], "UI")
-        backText.addComponent(new TextLabel(), {text:"Back", fillStyle:"black"})
+        backText.addComponent(new TextLabel(), {text:"Back", fillStyle:"black", textAlign:"center"})
 
         const backButton = this.instantiate(back)
         backButton.transform.anchorMin = new Vector2(0.5, 0.9)
@@ -26,10 +26,10 @@ class HelpScreen extends Scene{
         backButton.transform.offsetLowerRight = new Vector2(0, 0)
 
         const backButtonText = this.instantiate(backText)
-        backButtonText.transform.anchorMin = new Vector2(0.475, 0.925)
-        backButtonText.transform.anchorMax = new Vector2(0.475, 0.925)
-        backButtonText.transform.offsetUpperLeft = new Vector2(-50, -15)
-        backButtonText.transform.offsetLowerRight = new Vector2(-40, -5)
+        backButtonText.transform.anchorMin = new Vector2(0.5, 0.925)
+        backButtonText.transform.anchorMax = new Vector2(0.5, 0.925)
+        backButtonText.transform.offsetUpperLeft = new Vector2(-10, -10)
+        backButtonText.transform.offsetLowerRight = new Vector2(0, 0)
 
         let text1 = new GameObject("HelpText", [], "UI")
         text1.addComponent(new TextLabel(), {text:"Controls: Move with WASD, Focus with O, Bomb with P", font:"40px Comic Relief", fillStyle:"black"})

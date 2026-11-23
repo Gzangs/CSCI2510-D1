@@ -26,4 +26,8 @@ class SquareController extends Component {
       this.transform.position.y = this.transform.position.y + Time.deltaTime * this.speed
 
   }
+
+  onCollisionStay(other, mtx){
+    SceneManager.nextScene = ClosingScene
+  }
 }
